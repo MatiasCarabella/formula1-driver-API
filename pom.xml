@@ -43,9 +43,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<finalName>formula1-spring-boot-mysql</finalName>
-				</configuration>
+
 			</plugin>
 		</plugins>
 	</build>
