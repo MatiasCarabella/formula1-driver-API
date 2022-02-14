@@ -3,7 +3,7 @@ package com.springBootProject.formula1.driver;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "drivers")
+@Table(name = "drivers_1997")
 public class Driver {
 
     @Id
