@@ -16,26 +16,26 @@ public class DriverController {
         this.driverService = driverService;
     }
 
-    @GetMapping
+    @GetMapping(path = "/get")
     public List<Driver> getDrivers(){
         return driverService.getDrivers();
     }
 
-    @PostMapping
-    public void addDriver(@RequestBody Driver driver) { driverService.addNewDriver(driver); }
-
-    @DeleteMapping(path = "{driverId}")
-    public void deleteDriver (
-            @PathVariable("driverId") Long driverId) {
-        driverService.deleteDriver(driverId);
+    @PostMapping(path = "/add")
+    public void addDriver(@RequestBody Driver driver){
+        driverService.addDriver(driver);
     }
 
-    @PutMapping(path = "{driverId}")
+    @PutMapping(path = "/update/{driverId}")
     public void updateDriver(
             @PathVariable("driverId") Long driverId,
-            @RequestParam(required = false) String name,
-            @RequestParam(required = false) String team) {
-        driverService.updateDriver(driverId,name,team);
+            @RequestBody Driver driver) {
+        driverService.updateDriver(driverId, driver);
+    }
+
+    @DeleteMapping(path = "/delete/{driverId}")
+    public void deleteDriver (@PathVariable("driverId") Long driverId) {
+        driverService.deleteDriver(driverId);
     }
 
 }

@@ -22,7 +22,7 @@ public class DriverService {
         return driverRepository.findAll();
     }
 
-    public void addNewDriver(Driver driver) {
+    public void addDriver(Driver driver) {
         Optional<Driver> driverOptional = driverRepository.findByName(driver.getName());
         if (driverOptional.isPresent()){
             throw new IllegalStateException("Name taken");
@@ -30,39 +30,35 @@ public class DriverService {
         driverRepository.save(driver);
     }
 
+    @Transactional
+    public void updateDriver(Long driverId,
+                             Driver newDriver) {
+        Driver oldDriver = driverRepository.findById(driverId)
+                .orElseThrow(() -> new IllegalStateException("Driver with ID: " + driverId + " does not exist"));
+
+        if(     newDriver.getName() != null &&
+                newDriver.getName().length() > 0 &&
+                !Objects.equals(oldDriver.getName(),newDriver.getName())){
+            if(driverRepository.existsByName(newDriver.getName())){
+                throw new IllegalStateException("Name taken");
+            }
+            oldDriver.setName(newDriver.getName());
+        }
+        if(     newDriver.getTeam() != null &&
+                newDriver.getTeam().length() > 0 &&
+                !Objects.equals(oldDriver.getTeam(),newDriver.getTeam())){
+            if(driverRepository.countByTeam(newDriver.getTeam()) >= 2){
+                throw new IllegalStateException("Teams cannot have more than 2 drivers");
+            }
+            oldDriver.setTeam(newDriver.getTeam());
+        }
+    }
+
     public void deleteDriver(Long driverId) {
         boolean driverExists = driverRepository.existsById(driverId);
         if(!driverExists){
-            throw new IllegalStateException(
-                    "Driver with ID: " + driverId + " does not exist.");
+            throw new IllegalStateException("Driver with ID: " + driverId + " does not exist.");
         }
         driverRepository.deleteById(driverId);
-    }
-
-    @Transactional
-    public void updateDriver(Long driverId,
-                             String name,
-                             String team) {
-        Driver driver = driverRepository.findById(driverId)
-                .orElseThrow(() -> new IllegalStateException(
-                        "Driver with ID: " + driverId + " does not exist"
-                ));
-        if(     name != null &&
-                name.length() > 0 &&
-                !Objects.equals(driver.getName(),name)){
-            if(driverRepository.existsByName(name)){
-                throw new IllegalStateException("Name taken");
-            }
-            driver.setName(name);
-        }
-
-        if(     team != null &&
-                team.length() > 0 &&
-                !Objects.equals(driver.getTeam(),team)){
-            if(driverRepository.countByTeam(team) >= 2){
-                throw new IllegalStateException("Teams cannot have more than 2 drivers");
-            }
-            driver.setTeam(team);
-        }
     }
 }
