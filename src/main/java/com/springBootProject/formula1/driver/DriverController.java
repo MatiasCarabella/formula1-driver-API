@@ -1,6 +1,7 @@
 package com.springBootProject.formula1.driver;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,19 +13,16 @@ public class DriverController {
     private final DriverService  driverService;
 
     @Autowired
-    public DriverController(DriverService driverService) {
-        this.driverService = driverService;
-    }
+    public DriverController(DriverService driverService) { this.driverService = driverService; }
 
-    @GetMapping(path = "/get")
-    public List<Driver> getDrivers(){
-        return driverService.getDrivers();
-    }
+    @GetMapping(path = "/get/year/{year}")
+    public List<Driver> getDriversByYear(@PathVariable("year") int year) { return driverService.getDriversByYear(year); }
+
+    @GetMapping(path = "/get/team/{team}")
+    public List<Driver> getDriversByTeam(@PathVariable("team") String team) { return driverService.getDriversByTeam(team); }
 
     @PostMapping(path = "/add")
-    public void addDriver(@RequestBody Driver driver){
-        driverService.addDriver(driver);
-    }
+    public ResponseEntity addDriver(@RequestBody Driver driver){ return driverService.addDriver(driver); }
 
     @PutMapping(path = "/update/{driverId}")
     public void updateDriver(

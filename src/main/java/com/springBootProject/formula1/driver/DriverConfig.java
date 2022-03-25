@@ -13,15 +13,18 @@ public class DriverConfig {
     CommandLineRunner commandLineRunner(DriverRepository driverRepository){
         return args -> {
            Driver michael = new Driver(
+                   1997,
                     "Michael Schumacher",
                     "Ferrari"
             );
             Driver jacques = new Driver(
+                    1997,
                     "Jacques Villeneuve",
                     "Williams"
             );
 
             Driver mika = new Driver(
+                    1997,
                     "Mika Hakkinen",
                     "McLaren"
             );

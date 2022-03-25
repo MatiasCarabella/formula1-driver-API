@@ -3,28 +3,33 @@ package com.springBootProject.formula1.driver;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "drivers_1997")
+@Table(name = "drivers")
 public class Driver {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private int year;
     private String name;
     private String team;
 
     public Driver() {
     }
 
-    public Driver(String name,
+    public Driver(int year,
+                  String name,
                   String team) {
+        this.year = year;
         this.name = name;
         this.team = team;
     }
 
     public Driver(Long id,
+                  int year,
                   String name,
                   String team) {
         this.id = id;
+        this.year = year;
         this.name = name;
         this.team = team;
     }
@@ -36,6 +41,10 @@ public class Driver {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public int getYear() {return year; }
+
+    public void setYear(int year) { this.year = year; }
 
     public String getName() {
         return name;
@@ -57,6 +66,7 @@ public class Driver {
     public String toString() {
         return "Driver{" +
                 "id=" + id +
+                ", year=" + year +
                 ", name='" + name + '\'' +
                 ", team='" + team + '\'' +
                 '}';

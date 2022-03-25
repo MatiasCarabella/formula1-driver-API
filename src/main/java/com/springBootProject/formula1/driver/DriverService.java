@@ -1,6 +1,8 @@
 package com.springBootProject.formula1.driver;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -18,16 +20,24 @@ public class DriverService {
         this.driverRepository = driverRepository;
     }
 
-    public List<Driver> getDrivers() {
-        return driverRepository.findAll();
+    public List<Driver> getDriversByYear(int year) {
+        return driverRepository.findByYear(year);
     }
 
-    public void addDriver(Driver driver) {
+    public List<Driver> getDriversByTeam(String team) {
+        return driverRepository.findByTeam(team);
+    }
+
+    public ResponseEntity addDriver(Driver driver) {
         Optional<Driver> driverOptional = driverRepository.findByName(driver.getName());
         if (driverOptional.isPresent()){
-            throw new IllegalStateException("Name taken");
+            return ResponseEntity
+                    .status(HttpStatus.FORBIDDEN)
+                    .body("Driver already exists");
+    } else {
+            Driver newDriver = driverRepository.save(driver);
+            return ResponseEntity.ok(newDriver);
         }
-        driverRepository.save(driver);
     }
 
     @Transactional
