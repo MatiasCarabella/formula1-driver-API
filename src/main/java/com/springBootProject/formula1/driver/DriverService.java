@@ -1,5 +1,6 @@
 package com.springBootProject.formula1.driver;
 
+import com.springBootProject.formula1.response.ResponseHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,23 +21,26 @@ public class DriverService {
         this.driverRepository = driverRepository;
     }
 
-    public List<Driver> getDriversByYear(int year) {
-        return driverRepository.findByYear(year);
+    public ResponseEntity<Object> getDriversByYear(int year) {
+        List<Driver> data = driverRepository.findByYear(year);
+        if (data.isEmpty()) {
+            return ResponseHandler.generateResponse("No results", HttpStatus.NOT_FOUND, driverRepository.findByYear(year));
+        } else {
+            return ResponseHandler.generateResponse("Success", HttpStatus.OK, driverRepository.findByYear(year));
+        }
     }
 
     public List<Driver> getDriversByTeam(String team) {
         return driverRepository.findByTeam(team);
     }
 
-    public ResponseEntity addDriver(Driver driver) {
+    public ResponseEntity<Object> addDriver(Driver driver) {
         Optional<Driver> driverOptional = driverRepository.findByName(driver.getName());
         if (driverOptional.isPresent()){
-            return ResponseEntity
-                    .status(HttpStatus.FORBIDDEN)
-                    .body("Driver already exists");
-    } else {
+            return ResponseHandler.generateResponse("User already exists", HttpStatus.CONFLICT);
+        } else {
             Driver newDriver = driverRepository.save(driver);
-            return ResponseEntity.ok(newDriver);
+            return ResponseHandler.generateResponse("User created successfully!", HttpStatus.CREATED, newDriver);
         }
     }
 

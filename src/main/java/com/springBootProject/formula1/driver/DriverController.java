@@ -16,13 +16,13 @@ public class DriverController {
     public DriverController(DriverService driverService) { this.driverService = driverService; }
 
     @GetMapping(path = "/get/year/{year}")
-    public List<Driver> getDriversByYear(@PathVariable("year") int year) { return driverService.getDriversByYear(year); }
+    public ResponseEntity<Object> getDriversByYear(@PathVariable("year") int year) { return driverService.getDriversByYear(year); }
 
     @GetMapping(path = "/get/team/{team}")
     public List<Driver> getDriversByTeam(@PathVariable("team") String team) { return driverService.getDriversByTeam(team); }
 
     @PostMapping(path = "/add")
-    public ResponseEntity addDriver(@RequestBody Driver driver){ return driverService.addDriver(driver); }
+    public ResponseEntity<Object> addDriver(@RequestBody Driver driver){ return driverService.addDriver(driver); }
 
     @PutMapping(path = "/update/{driverId}")
     public void updateDriver(

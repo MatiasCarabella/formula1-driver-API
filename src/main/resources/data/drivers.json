@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "year": 1997,
+    "name": "Michael Schumacher",
+    "team": "Ferrari"
+  },
+  {
+    "id": 2,
+    "year": 1997,
+    "name": "Jacques Villeneuve",
+    "team": "Williams"
+  },
+  {
+    "id": 3,
+    "year": 1997,
+    "name": "Mika Hakkinen",
+    "team": "McLaren"
+  }
+]
