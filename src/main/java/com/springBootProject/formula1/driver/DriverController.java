@@ -16,24 +16,22 @@ public class DriverController {
     public DriverController(DriverService driverService) { this.driverService = driverService; }
 
     @GetMapping(path = "/get/year/{year}")
-    public ResponseEntity<Object> getDriversByYear(@PathVariable("year") int year) { return driverService.getDriversByYear(year); }
+    public ResponseEntity<Object> getDriversByYear(@PathVariable("year") int year) { return driverService.getByYear(year); }
 
     @GetMapping(path = "/get/team/{team}")
-    public List<Driver> getDriversByTeam(@PathVariable("team") String team) { return driverService.getDriversByTeam(team); }
+    public ResponseEntity<Object> getDriversByTeam(@PathVariable("team") String team) { return driverService.getByTeam(team); }
 
     @PostMapping(path = "/add")
-    public ResponseEntity<Object> addDriver(@RequestBody Driver driver){ return driverService.addDriver(driver); }
+    public ResponseEntity<Object> addDriver(@RequestBody List<Driver> driver){ return driverService.add(driver); }
 
-    @PutMapping(path = "/update/{driverId}")
-    public void updateDriver(
-            @PathVariable("driverId") Long driverId,
+    @PutMapping(path = "/update/{id}")
+    public ResponseEntity<Object> updateDriver(
+            @PathVariable("id") Long id,
             @RequestBody Driver driver) {
-        driverService.updateDriver(driverId, driver);
+        return driverService.update(id, driver);
     }
 
-    @DeleteMapping(path = "/delete/{driverId}")
-    public void deleteDriver (@PathVariable("driverId") Long driverId) {
-        driverService.deleteDriver(driverId);
-    }
+    @DeleteMapping(path = "/delete/{id}")
+    public ResponseEntity<Object> deleteDriver (@PathVariable("id") Long id) { return driverService.delete(id); }
 
 }

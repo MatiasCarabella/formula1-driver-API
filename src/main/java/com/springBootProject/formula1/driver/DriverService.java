@@ -7,9 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class DriverService {
@@ -21,58 +19,73 @@ public class DriverService {
         this.driverRepository = driverRepository;
     }
 
-    public ResponseEntity<Object> getDriversByYear(int year) {
+    public ResponseEntity<Object> getByYear(int year) {
         List<Driver> data = driverRepository.findByYear(year);
         if (data.isEmpty()) {
-            return ResponseHandler.generateResponse("No results", HttpStatus.NOT_FOUND, driverRepository.findByYear(year));
+            return ResponseHandler.generateResponse("No results for year " + year, HttpStatus.NOT_FOUND, data);
         } else {
-            return ResponseHandler.generateResponse("Success", HttpStatus.OK, driverRepository.findByYear(year));
+            return ResponseHandler.generateResponse("Success", HttpStatus.OK, data);
         }
     }
 
-    public List<Driver> getDriversByTeam(String team) {
-        return driverRepository.findByTeam(team);
+    public ResponseEntity<Object> getByTeam(String team) {
+        List<Driver> data = driverRepository.findByTeam(team);
+        if (data.isEmpty()) {
+            return ResponseHandler.generateResponse("No results for team " + team, HttpStatus.NOT_FOUND, data);
+        } else {
+            return ResponseHandler.generateResponse("Success", HttpStatus.OK, data);
+        }
     }
 
-    public ResponseEntity<Object> addDriver(Driver driver) {
-        Optional<Driver> driverOptional = driverRepository.findByName(driver.getName());
-        if (driverOptional.isPresent()){
-            return ResponseHandler.generateResponse("User already exists", HttpStatus.CONFLICT);
+    public ResponseEntity<Object> add(List<Driver> drivers) {
+        List<Driver> existingDrivers = new ArrayList<>(Collections.emptyList());
+        // Check input data for existing drivers
+        for (Driver driver : drivers) {
+            if (driverRepository.existsByNameAndYearAndTeam(
+                    driver.getName(),
+                    driver.getYear(),
+                    driver.getTeam())) {
+                existingDrivers.add(driver);
+            }
+        }
+        if(existingDrivers.isEmpty()) {
+            // Input validation OK, add drivers
+            for (Driver driver : drivers) {
+                driverRepository.save(driver);
+            }
+            return ResponseHandler.generateResponse("Drivers created successfully", HttpStatus.CREATED, drivers);
         } else {
-            Driver newDriver = driverRepository.save(driver);
-            return ResponseHandler.generateResponse("User created successfully!", HttpStatus.CREATED, newDriver);
+            return ResponseHandler.generateResponse("Existing drivers detected", HttpStatus.CONFLICT, existingDrivers);
         }
     }
 
     @Transactional
-    public void updateDriver(Long driverId,
-                             Driver newDriver) {
-        Driver oldDriver = driverRepository.findById(driverId)
-                .orElseThrow(() -> new IllegalStateException("Driver with ID: " + driverId + " does not exist"));
-
-        if(     newDriver.getName() != null &&
-                newDriver.getName().length() > 0 &&
-                !Objects.equals(oldDriver.getName(),newDriver.getName())){
-            if(driverRepository.existsByName(newDriver.getName())){
-                throw new IllegalStateException("Name taken");
+    public ResponseEntity<Object> update(Long id,
+                                         Driver newDriver) {
+        Driver driver = driverRepository.findById(id).orElse(new Driver());
+        if(driver.getId() == null) {
+            return ResponseHandler.generateResponse("Driver with ID " + id + " does not exist", HttpStatus.NOT_FOUND);
+        } else {
+            if (driverRepository.existsByNameAndYearAndTeam(
+                    newDriver.getName(),
+                    newDriver.getYear(),
+                    newDriver.getTeam())) {
+                return ResponseHandler.generateResponse("Driver already exists", HttpStatus.CONFLICT);
             }
-            oldDriver.setName(newDriver.getName());
-        }
-        if(     newDriver.getTeam() != null &&
-                newDriver.getTeam().length() > 0 &&
-                !Objects.equals(oldDriver.getTeam(),newDriver.getTeam())){
-            if(driverRepository.countByTeam(newDriver.getTeam()) >= 2){
-                throw new IllegalStateException("Teams cannot have more than 2 drivers");
-            }
-            oldDriver.setTeam(newDriver.getTeam());
+            driver.setYear(newDriver.getYear());
+            driver.setName(newDriver.getName());
+            driver.setTeam(newDriver.getTeam());
+            return ResponseHandler.generateResponse("Driver updated successfully", HttpStatus.OK, driver);
         }
     }
 
-    public void deleteDriver(Long driverId) {
-        boolean driverExists = driverRepository.existsById(driverId);
-        if(!driverExists){
-            throw new IllegalStateException("Driver with ID: " + driverId + " does not exist.");
+    public ResponseEntity<Object> delete(Long id) {
+        Optional<Driver> driver = driverRepository.findById(id);
+        if(driver.isEmpty()) {
+            return ResponseHandler.generateResponse("Driver with ID " + id + " does not exist", HttpStatus.NOT_FOUND);
+        } else {
+            driverRepository.deleteById(id);
+            return ResponseHandler.generateResponse("Driver deleted successfully", HttpStatus.OK, driver);
         }
-        driverRepository.deleteById(driverId);
     }
 }

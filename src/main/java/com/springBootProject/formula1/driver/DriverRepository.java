@@ -11,13 +11,7 @@ import java.util.Optional;
 public interface DriverRepository extends JpaRepository<Driver, Long> {
 
     @Query("SELECT d FROM Driver d WHERE d.name =?1")
-    Optional<Driver> findByName(String name);
-
     List<Driver> findByYear(int year);
-
     List<Driver> findByTeam(String team);
-
-    boolean existsByName(String name);
-
-    long countByTeam(String team);
+    boolean existsByNameAndYearAndTeam(String name, int year, String team);
 }

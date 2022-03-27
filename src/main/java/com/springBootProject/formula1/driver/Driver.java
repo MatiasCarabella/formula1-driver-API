@@ -2,12 +2,17 @@ package com.springBootProject.formula1.driver;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "drivers")
-public class Driver {
 
+
+
+@Entity
+@Table(name = "drivers",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"year", "name", "team"})
+)
+public class Driver {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(unique = true)
     private Long id;
     private int year;
     private String name;
