@@ -19,6 +19,24 @@ public class DriverService {
         this.driverRepository = driverRepository;
     }
 
+    public ResponseEntity<Object> get() {
+        List<Driver> data = driverRepository.findAllByOrderById();
+        if (data.isEmpty()) {
+            return ResponseHandler.generateResponse("No results", HttpStatus.NOT_FOUND, data);
+        } else {
+            return ResponseHandler.generateResponse("Success", HttpStatus.OK, data);
+        }
+    }
+
+    public ResponseEntity<Object> getByYearAndTeam(int year, String team) {
+        List<Driver> data = driverRepository.findByYearAndTeam(year, team);
+        if (data.isEmpty()) {
+            return ResponseHandler.generateResponse("No results for year " + year + " and team " + team, HttpStatus.NOT_FOUND, data);
+        } else {
+            return ResponseHandler.generateResponse("Success", HttpStatus.OK, data);
+        }
+    }
+
     public ResponseEntity<Object> getByYear(int year) {
         List<Driver> data = driverRepository.findByYear(year);
         if (data.isEmpty()) {

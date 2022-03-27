@@ -12,10 +12,18 @@ import javax.persistence.*;
 public class Driver {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(unique = true)
     private Long id;
+
+    @Basic(optional = false)
+    @Column(nullable = false)
     private int year;
+
+    @Basic(optional = false)
+    @Column(nullable = false)
     private String name;
+
+    @Basic(optional = false)
+    @Column(nullable = false)
     private String team;
 
     public Driver() {
