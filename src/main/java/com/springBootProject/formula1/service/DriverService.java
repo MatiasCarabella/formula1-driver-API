@@ -1,5 +1,7 @@
-package com.springBootProject.formula1.driver;
+package com.springBootProject.formula1.service;
 
+import com.springBootProject.formula1.domain.Driver;
+import com.springBootProject.formula1.repository.DriverRepository;
 import com.springBootProject.formula1.response.ResponseHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

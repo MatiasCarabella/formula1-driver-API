@@ -1,5 +1,7 @@
-package com.springBootProject.formula1.driver;
+package com.springBootProject.formula1.controller;
 
+import com.springBootProject.formula1.domain.Driver;
+import com.springBootProject.formula1.service.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +13,7 @@ import java.util.Optional;
 @RequestMapping(path = "api/v2/drivers")
 public class DriverController {
 
-    private final DriverService  driverService;
+    private final DriverService driverService;
 
     @Autowired
     public DriverController(DriverService driverService) { this.driverService = driverService; }

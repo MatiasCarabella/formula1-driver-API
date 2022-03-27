@@ -1,4 +1,4 @@
-package com.springBootProject.formula1.driver;
+package com.springBootProject.formula1.domain;
 
 import javax.persistence.*;
 

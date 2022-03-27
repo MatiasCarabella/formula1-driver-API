@@ -1,6 +1,6 @@
 package com.springBootProject.formula1;
 
-import com.springBootProject.formula1.driver.DriverService;
+import com.springBootProject.formula1.service.DriverService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -11,7 +11,7 @@ import java.io.InputStream;
 import java.util.List;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.springBootProject.formula1.driver.Driver;
+import com.springBootProject.formula1.domain.Driver;
 
 @SpringBootApplication
 public class Formula1Application {
