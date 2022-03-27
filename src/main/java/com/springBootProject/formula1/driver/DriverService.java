@@ -29,7 +29,7 @@ public class DriverService {
     }
 
     public ResponseEntity<Object> getByYearAndTeam(int year, String team) {
-        List<Driver> data = driverRepository.findByYearAndTeam(year, team);
+        List<Driver> data = driverRepository.findByYearAndTeamOrderById(year, team);
         if (data.isEmpty()) {
             return ResponseHandler.generateResponse("No results for year " + year + " and team " + team, HttpStatus.NOT_FOUND, data);
         } else {
@@ -38,7 +38,7 @@ public class DriverService {
     }
 
     public ResponseEntity<Object> getByYear(int year) {
-        List<Driver> data = driverRepository.findByYear(year);
+        List<Driver> data = driverRepository.findByYearOrderById(year);
         if (data.isEmpty()) {
             return ResponseHandler.generateResponse("No results for year " + year, HttpStatus.NOT_FOUND, data);
         } else {
@@ -47,7 +47,7 @@ public class DriverService {
     }
 
     public ResponseEntity<Object> getByTeam(String team) {
-        List<Driver> data = driverRepository.findByTeam(team);
+        List<Driver> data = driverRepository.findByTeamOrderById(team);
         if (data.isEmpty()) {
             return ResponseHandler.generateResponse("No results for team " + team, HttpStatus.NOT_FOUND, data);
         } else {

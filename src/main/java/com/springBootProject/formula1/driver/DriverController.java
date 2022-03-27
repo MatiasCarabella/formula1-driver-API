@@ -33,14 +33,14 @@ public class DriverController {
     @PostMapping(path = "/add")
     public ResponseEntity<Object> addDriver(@RequestBody List<Driver> driver){ return driverService.add(driver); }
 
-    @PutMapping(path = "/update/{id}")
+    @PutMapping(path = "/update")
     public ResponseEntity<Object> updateDriver(
-            @PathVariable("id") Long id,
+            @RequestParam Optional<Long> id,
             @RequestBody Driver driver) {
-        return driverService.update(id, driver);
+        return driverService.update(id.orElse(0L), driver);
     }
 
-    @DeleteMapping(path = "/delete/{id}")
-    public ResponseEntity<Object> deleteDriver (@PathVariable("id") Long id) { return driverService.delete(id); }
+    @DeleteMapping(path = "/delete")
+    public ResponseEntity<Object> deleteDriver (@RequestParam Optional<Long> id) { return driverService.delete(id.orElse(0L)); }
 
 }
