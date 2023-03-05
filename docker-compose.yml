@@ -1,16 +1,17 @@
 services:
-  spring-app:
+  spring-boot-app:
     build: .
     restart: always
     ports:
-      - 8080:8080
-    depends_on:
-      - db-mysql
+      - 9090:8080
+      - 9096:8086
     environment:
       MYSQL_HOST: db-mysql
       MYSQL_PORT: 3306
       MYSQL_USER: mysqluser
       MYSQL_PASSWORD: secret
+    depends_on:
+      - db-mysql
 
   db-mysql:
     image: "mysql:latest"
