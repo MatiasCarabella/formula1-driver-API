@@ -6,7 +6,7 @@
   * [General description](#general-description)
   * [Technical specification](#technical-specification)
   * [Installation](#installation)
-    + [PHP | Composer | Artisan](#php--composer--artisan)
+    + [Maven](#maven)
     + [Docker compose](#docker-compose-)
   * [Using the API](#using-the-api)
     + [Notes](#notes)
