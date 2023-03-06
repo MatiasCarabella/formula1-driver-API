@@ -35,7 +35,7 @@ git init
 git pull https://github.com/MatiasCarabella/formula1CRUD.git
 ```
 
-2. Spin up a MySQL database with the default credentials and a 'formula1' database. We can achieve this with a single **docker** command:
+2. Spin up a MySQL server with the default credentials and a 'formula1' database. We can achieve this with a single **docker** command:
 ```
 docker run --name mysql -p 13306:3306 -e MYSQL_DATABASE=formula1 -e MYSQL_USER=mysqluser -e MYSQL_PASSWORD=secret -e MYSQL_ROOT_PASSWORD=secret -d mysql
 ```
