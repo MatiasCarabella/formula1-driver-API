@@ -56,7 +56,7 @@ Run the following command to run the spring boot app:
 ```
 
 **All done!**
-By default, the app will run on port 8086**
+By default, the app will run on port **8086**
 
 ### Docker compose 🐋
 Requirements:
@@ -68,6 +68,7 @@ docker compose up
 ```
 
 **All done!**
+By default, the app will run on port **9096**
 
 
 ## Using the API
