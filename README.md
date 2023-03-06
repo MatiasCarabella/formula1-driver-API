@@ -9,9 +9,6 @@
     + [Maven](#maven)
     + [Docker compose](#docker-compose-)
   * [Using the API](#using-the-api)
-    + [Notes](#notes)
-  * [Project structure](#project-structure)
-  * [Tests](#tests)
   * [Closing thoughts](#closing-thoughts)
 
 
@@ -78,12 +75,10 @@ By default, the app will run on port **9096**
 
 ## Using the API
 
-To make sure everything is working fine, you can access http://localhost:9096/api/v2/drivers/get 
-
-_(You might have to change the **PORT** depending on how you chose to run the project)_
+To make sure everything is working fine, you can access http://localhost:9096/api/v2/drivers/get _(You might have to change the **PORT** depending on how you chose to run the project)_
 
 You should see something like this:
-<p align="center"><img src="https://i.imgur.com/k4bRv2V.png"></p>
+<p align="center"><img src="https://i.imgur.com/rcUMlcx.png"></p>
 
 You're all set! 🏎️✨ Now you can refer to the <a href="https://documenter.getpostman.com/view/10146128/2s93JoxRFG" target="_blank">**API's Documentation**</a>
 
