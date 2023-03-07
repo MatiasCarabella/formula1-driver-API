@@ -83,7 +83,7 @@ You should see something like this:
 You're all set! 🏎️✨ Now you can refer to the <a href="https://documenter.getpostman.com/view/10146128/2s93JoxRFG" target="_blank">**API's Documentation**</a>
 
 ## Closing thoughts
-I hope you enjoy this little passion project,
+I hope you enjoy this little passion project of mine, and thanks to [@DaianaArena](https://github.com/DaianaArena) for creating the banner image!
 
 To whoever read this far, thank you very much and best regards!
 
