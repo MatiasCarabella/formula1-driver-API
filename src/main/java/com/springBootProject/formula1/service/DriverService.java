@@ -30,6 +30,15 @@ public class DriverService {
         }
     }
 
+    public ResponseEntity<Object> getByPosition(int position) {
+        List<Driver> data = driverRepository.findByPositionOrderById(position);
+        if (data.isEmpty()) {
+            return ResponseHandler.generateResponse("No results for position " + position, HttpStatus.NOT_FOUND, data);
+        } else {
+            return ResponseHandler.generateResponse("Success", HttpStatus.OK, data);
+        }
+    }
+
     public ResponseEntity<Object> getByYearAndTeam(int year, String team) {
         List<Driver> data = driverRepository.findByYearAndTeamOrderById(year, team);
         if (data.isEmpty()) {

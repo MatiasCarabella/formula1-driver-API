@@ -20,13 +20,17 @@ public class DriverController {
 
     @GetMapping(path = "/get")
     public ResponseEntity<Object> getDriversByYear(@RequestParam Optional<Integer> year,
-                                                   @RequestParam Optional<String> team) {
+                                                   @RequestParam Optional<String> team,
+                                                   @RequestParam Optional<Integer> position) {
+        // TODO REFACTOR
         if (year.isPresent() && team.isPresent()) {
             return driverService.getByYearAndTeam(year.orElse(0), team.orElse(""));
         } else if (year.isPresent()) {
             return driverService.getByYear(year.orElse(0));
         } else if (team.isPresent()) {
             return driverService.getByTeam(team.orElse(""));
+        } else if (position.isPresent()) {
+            return driverService.getByPosition(position.orElse(-1));
         } else {
             return driverService.get();
         }

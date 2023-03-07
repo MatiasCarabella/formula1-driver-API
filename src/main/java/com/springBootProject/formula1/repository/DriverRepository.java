@@ -10,6 +10,7 @@ import java.util.List;
 public interface DriverRepository extends JpaRepository<Driver, Long> {
 
     List<Driver> findAllByOrderById();
+    List<Driver> findByPositionOrderById(int position);
     List<Driver> findByYearAndTeamOrderById(int year, String team);
     List<Driver> findByYearOrderById(int year);
     List<Driver> findByTeamOrderById(String team);
