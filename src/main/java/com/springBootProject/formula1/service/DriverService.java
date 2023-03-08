@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 
 import javax.transaction.Transactional;
 import java.util.*;
@@ -21,46 +23,27 @@ public class DriverService {
         this.driverRepository = driverRepository;
     }
 
-    public ResponseEntity<Object> get() {
-        List<Driver> data = driverRepository.findAllByOrderById();
-        if (data.isEmpty()) {
-            return ResponseHandler.generateResponse("No results", HttpStatus.NOT_FOUND, data);
-        } else {
-            return ResponseHandler.generateResponse("Success", HttpStatus.OK, data);
-        }
-    }
+    public ResponseEntity<Object> get(Optional<Integer> year,
+                                      Optional<String> team,
+                                      Optional<Integer> position) {
+        Specification<Driver> spec = Specification.where(null);
 
-    public ResponseEntity<Object> getByPosition(int position) {
-        List<Driver> data = driverRepository.findByPositionOrderById(position);
-        if (data.isEmpty()) {
-            return ResponseHandler.generateResponse("No results for position " + position, HttpStatus.NOT_FOUND, data);
-        } else {
-            return ResponseHandler.generateResponse("Success", HttpStatus.OK, data);
+        if (year.isPresent()) {
+            spec = spec.and((root, query, cb) -> cb.equal(root.get("year"), year.get()));
         }
-    }
 
-    public ResponseEntity<Object> getByYearAndTeam(int year, String team) {
-        List<Driver> data = driverRepository.findByYearAndTeamOrderById(year, team);
-        if (data.isEmpty()) {
-            return ResponseHandler.generateResponse("No results for year " + year + " and team " + team, HttpStatus.NOT_FOUND, data);
-        } else {
-            return ResponseHandler.generateResponse("Success", HttpStatus.OK, data);
+        if (team.isPresent()) {
+            spec = spec.and((root, query, cb) -> cb.equal(root.get("team"), team.get()));
         }
-    }
 
-    public ResponseEntity<Object> getByYear(int year) {
-        List<Driver> data = driverRepository.findByYearOrderById(year);
-        if (data.isEmpty()) {
-            return ResponseHandler.generateResponse("No results for year " + year, HttpStatus.NOT_FOUND, data);
-        } else {
-            return ResponseHandler.generateResponse("Success", HttpStatus.OK, data);
+        if (position.isPresent()) {
+            spec = spec.and((root, query, cb) -> cb.equal(root.get("position"), position.get()));
         }
-    }
 
-    public ResponseEntity<Object> getByTeam(String team) {
-        List<Driver> data = driverRepository.findByTeamOrderById(team);
+        List<Driver> data = driverRepository.findAll(spec, Sort.by("id"));
+
         if (data.isEmpty()) {
-            return ResponseHandler.generateResponse("No results for team " + team, HttpStatus.NOT_FOUND, data);
+            return ResponseHandler.generateResponse("No results found", HttpStatus.NOT_FOUND, data);
         } else {
             return ResponseHandler.generateResponse("Success", HttpStatus.OK, data);
         }

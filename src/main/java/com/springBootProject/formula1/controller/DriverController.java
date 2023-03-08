@@ -19,21 +19,10 @@ public class DriverController {
     public DriverController(DriverService driverService) { this.driverService = driverService; }
 
     @GetMapping(path = "/get")
-    public ResponseEntity<Object> getDriversByYear(@RequestParam Optional<Integer> year,
-                                                   @RequestParam Optional<String> team,
-                                                   @RequestParam Optional<Integer> position) {
-        // TODO REFACTOR
-        if (year.isPresent() && team.isPresent()) {
-            return driverService.getByYearAndTeam(year.orElse(0), team.orElse(""));
-        } else if (year.isPresent()) {
-            return driverService.getByYear(year.orElse(0));
-        } else if (team.isPresent()) {
-            return driverService.getByTeam(team.orElse(""));
-        } else if (position.isPresent()) {
-            return driverService.getByPosition(position.orElse(-1));
-        } else {
-            return driverService.get();
-        }
+    public ResponseEntity<Object> getDrivers(@RequestParam Optional<Integer> year,
+                                             @RequestParam Optional<String> team,
+                                             @RequestParam Optional<Integer> position) {
+        return driverService.get(year, team, position);
     }
 
     @PostMapping(path = "/add")
