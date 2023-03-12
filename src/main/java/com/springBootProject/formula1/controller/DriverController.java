@@ -19,10 +19,11 @@ public class DriverController {
     public DriverController(DriverService driverService) { this.driverService = driverService; }
 
     @GetMapping(path = "/get")
-    public ResponseEntity<Object> getDrivers(@RequestParam Optional<Integer> year,
+    public ResponseEntity<Object> getDrivers(@RequestParam Optional<String> driver,
                                              @RequestParam Optional<String> team,
-                                             @RequestParam Optional<Integer> position) {
-        return driverService.get(year, team, position);
+                                             @RequestParam Optional<Integer> position,
+                                             @RequestParam Optional<Integer> year) {
+        return driverService.get(driver, team, position, year);
     }
 
     @PostMapping(path = "/add")

@@ -18,28 +18,46 @@ public class DriverService {
 
     private final DriverRepository driverRepository;
 
+    /**
+ * Retrieve a list of drivers based on the given search criteria.
+ *
+ * @param driver (optional) the driver name or a substring of it to search for
+ * @param team (optional) the team name or a substring of it to search for
+ * @param position (optional) the driver position to search for
+ * @param year (optional) the year to search for
+ * @return a ResponseEntity containing the list of matching drivers, or an error message if no results are found
+ */
     @Autowired
     public DriverService(DriverRepository driverRepository) {
         this.driverRepository = driverRepository;
     }
 
-    public ResponseEntity<Object> get(Optional<Integer> year,
+    public ResponseEntity<Object> get(Optional<String> driver,
                                       Optional<String> team,
-                                      Optional<Integer> position) {
+                                      Optional<Integer> position,
+                                      Optional<Integer> year) {
+        // Start with an empty specification
         Specification<Driver> spec = Specification.where(null);
 
-        if (year.isPresent()) {
-            spec = spec.and((root, query, cb) -> cb.equal(root.get("year"), year.get()));
+        if (driver.isPresent()) { // Driver.name contains 'driver'?
+            String pattern = "%" + driver.get() + "%";
+            spec = spec.and((root, query, cb) -> cb.like(root.get("name"), pattern));
         }
 
-        if (team.isPresent()) {
-            spec = spec.and((root, query, cb) -> cb.equal(root.get("team"), team.get()));
+        if (team.isPresent()) { // Driver.team contains 'team'?
+            String pattern = "%" + team.get() + "%";
+            spec = spec.and((root, query, cb) -> cb.like(root.get("team"), pattern));
         }
 
-        if (position.isPresent()) {
+        if (position.isPresent()) { // Driver.position equals 'position'?
             spec = spec.and((root, query, cb) -> cb.equal(root.get("position"), position.get()));
         }
 
+        if (year.isPresent()) { // Driver.year equals 'year'?
+            spec = spec.and((root, query, cb) -> cb.equal(root.get("year"), year.get()));
+        }
+
+        // Execute the query with the generated specification and sort the results by ID
         List<Driver> data = driverRepository.findAll(spec, Sort.by("id"));
 
         if (data.isEmpty()) {
