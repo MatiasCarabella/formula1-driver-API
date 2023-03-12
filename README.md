@@ -78,7 +78,7 @@ By default, the app will run on port **9096**
 To make sure everything is working fine, you can access http://localhost:9096/api/v2/drivers/get _(You might have to change the **PORT** depending on how you chose to run the project)_
 
 You should see something like this:
-<p align="center"><img src="https://i.imgur.com/rcUMlcx.png"></p>
+<p align="center"><img src="https://i.imgur.com/v1Bka3s.png"></p>
 
 You're all set! 🏎️✨ Now you can refer to the <a href="https://documenter.getpostman.com/view/10146128/2s93JoxRFG" target="_blank">**API's Documentation**</a>
 
