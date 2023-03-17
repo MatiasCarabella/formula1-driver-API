@@ -13,7 +13,7 @@
 
 
 ## General description
-This proyect is a REST API of F1 drivers that allows the user to fetch, add, update and delete them as you wish.
+This project is a REST API of F1 drivers that allows the user to fetch, add, update and delete them as you wish.
 
 ## Technical specification
 - **Java** JDK version **11.x** _(Mandatory)_
