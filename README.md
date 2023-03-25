@@ -1,19 +1,8 @@
 <p align="center"><a href="https://spring.io/" target="_blank"><img src="https://i.imgur.com/ctXVIWc.jpg" width="400"></a></p>
 
-## Formula 1 CRUD API - Spring Boot & MySQL
 
-## Index
-  * [General description](#general-description)
-  * [Technical specification](#technical-specification)
-  * [Installation](#installation)
-    + [Maven](#maven)
-    + [Docker compose](#docker-compose-)
-  * [Using the API](#using-the-api)
-  * [Closing thoughts](#closing-thoughts)
-
-
-## General description
-This proyect is a REST API of F1 drivers that allows the user to fetch, add, update and delete them as you wish.
+#  Formula 1 CRUD API - Spring Boot & MySQL
+This project is a REST API of F1 drivers that allows the user to fetch, add, update and delete them as you wish.
 
 ## Technical specification
 - **Java** JDK version **11.x** _(Mandatory)_
