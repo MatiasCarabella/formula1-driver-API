@@ -4,39 +4,58 @@ import com.springBootProject.formula1.domain.Driver;
 import com.springBootProject.formula1.service.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "api/v2/drivers")
+@RequestMapping("api/v2/drivers")
+@Validated
 public class DriverController {
 
     private final DriverService driverService;
 
     @Autowired
-    public DriverController(DriverService driverService) { this.driverService = driverService; }
+    public DriverController(DriverService driverService) {
+        this.driverService = driverService;
+    }
 
-    @GetMapping(path = "/get")
-    public ResponseEntity<Object> getDrivers(@RequestParam Optional<String> driver,
-                                             @RequestParam Optional<String> team,
-                                             @RequestParam Optional<Integer> position,
-                                             @RequestParam Optional<Integer> year) {
+    @GetMapping
+    public ResponseEntity<Object> getDrivers(
+            @RequestParam(required = false) Optional<String> driver,
+            @RequestParam(required = false) Optional<String> team,
+            @RequestParam(required = false) Optional<Integer> position,
+            @RequestParam(required = false) Optional<Integer> year) {
         return driverService.get(driver, team, position, year);
     }
 
-    @PostMapping(path = "/add")
-    public ResponseEntity<Object> addDriver(@RequestBody List<Driver> driver){ return driverService.add(driver); }
-
-    @PutMapping(path = "/update")
-    public ResponseEntity<Object> updateDriver(
-            @RequestParam Optional<Long> id,
-            @RequestBody Driver driver) {
-        return driverService.update(id.orElse(0L), driver);
+    @PostMapping
+    public ResponseEntity<Object> addDrivers(@RequestBody List<Driver> drivers) {
+        return driverService.add(drivers);
     }
 
-    @DeleteMapping(path = "/delete")
-    public ResponseEntity<Object> deleteDriver (@RequestParam Optional<Long> id) { return driverService.delete(id.orElse(0L)); }
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> updateDriver(
+            @PathVariable Long id,
+            @RequestBody Driver driver) {
+        return driverService.update(id, driver);
+    }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deleteDriver(@PathVariable Long id) {
+        return driverService.delete(id);
+    }
+
+    // Endpoint for initializing data
+    @PostMapping("/initialize")
+    public ResponseEntity<String> initializeData() {
+        try {
+            driverService.initializeData();  // Call the service to load the drivers
+            return ResponseEntity.ok("Data initialized successfully.");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Failed to initialize data: " + e.getMessage());
+        }
+    }
 }

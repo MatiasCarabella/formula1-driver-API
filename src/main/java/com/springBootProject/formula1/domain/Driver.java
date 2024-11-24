@@ -1,6 +1,6 @@
 package com.springBootProject.formula1.domain;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 
 
