@@ -48,14 +48,9 @@ public class DriverController {
         return driverService.delete(id);
     }
 
-    // Endpoint for initializing data
+    // Initialize DB
     @PostMapping("/initialize")
-    public ResponseEntity<String> initializeData() {
-        try {
-            driverService.initializeData();  // Call the service to load the drivers
-            return ResponseEntity.ok("Data initialized successfully.");
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body("Failed to initialize data: " + e.getMessage());
-        }
+    public ResponseEntity<Object> initializeData() {
+        return driverService.initializeData();
     }
 }

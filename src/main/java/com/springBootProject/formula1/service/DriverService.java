@@ -168,7 +168,6 @@ public class DriverService {
 
             loadDriversFromJson();
             return ResponseHandler.generateResponse("Successfully initialized driver data.", HttpStatus.OK, null);
-
         } catch (IOException e) {
             logger.error("Failed to initialize data: ", e);
             return ResponseHandler.generateResponse("Failed to initialize data: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR, null);
@@ -241,8 +240,7 @@ public class DriverService {
     private List<Driver> readDriversFromJson() throws IOException {
         Resource resource = new ClassPathResource("/data/drivers.json");
         try (InputStream inputStream = resource.getInputStream()) {
-            return objectMapper.readValue(inputStream, new TypeReference<List<Driver>>() {
-            });
+            return objectMapper.readValue(inputStream, new TypeReference<List<Driver>>() {});
         }
     }
 
