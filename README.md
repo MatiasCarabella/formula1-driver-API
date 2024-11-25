@@ -6,7 +6,7 @@ This RESTful API allows users to fetch, add, update, and delete Formula 1 driver
 ## Setup Instructions
 
 ### Prerequisites
-- [Docker](https://docs.docker.com/get-started/get-docker/) and [Docker Compose](https://docs.docker.com/compose/)
+- [**Docker**](https://docs.docker.com/get-started/get-docker/) and [**Docker Compose**](https://docs.docker.com/compose/)
 
 ### Installation
 1. Clone the repository:
@@ -95,4 +95,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 - [**Spring Boot**](https://spring.io/projects/spring-boot) 🍃 for the backend framework.
 - [**Docker**](https://www.docker.com/) 🐳 for containerized deployment.
-- [@DaianaArena](https://github.com/DaianaArena) 💜 for creating the banner image.
+- [**@DaianaArena**](https://github.com/DaianaArena) 💜 for creating the banner image.
