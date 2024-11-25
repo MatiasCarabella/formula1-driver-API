@@ -1,13 +1,12 @@
 <p align="center"><a href="https://spring.io/" target="_blank"><img src="https://i.imgur.com/ctXVIWc.jpg" width="400"></a></p>
 
 # F1 Driver CRUD API
-This project is a REST API of F1 drivers that allows the user to fetch, add, update, and delete them as you wish.
+This RESTful API allows users to fetch, add, update, and delete Formula 1 driver data, such as name, nationality, team, and statistics. Built with Spring Boot and MySQL, the app is fully dockerized for easy setup and deployment via Docker Compose, requiring no additional software installation.
 
 ## Setup Instructions
 
 ### Prerequisites
 - [Docker](https://docs.docker.com/get-started/get-docker/) and [Docker Compose](https://docs.docker.com/compose/)
-- API key for [**Groq**](https://console.groq.com/docs/overview) (AI provider)
 
 ### Installation
 1. Clone the repository:
