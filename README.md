@@ -30,30 +30,62 @@ _This will automatically build the Docker containers and start the application._
 
 ## Project Structure
 ```
-dealership-ai-chat/
-└── app/
-|   ├── __init__.py      # Package initialization
-|   ├── main.py          # FastAPI application
-|   ├── chatbot.py       # Chatbot implementation
-|   ├── database.py      # Database connection and setup
-|   └── models.py        # Database models and schemas
-├── Dockerfile           # Dockerfile for the app
-├── docker-compose.yml   # Docker Compose configuration
-├── requirements.txt     # Python dependencies
-├── init.sql             # Database initialization script
-├── .env.example         # Environment variables
-├── .gitignore           # Files to ignore in Git
-├── LICENSE              # MIT license
-└── README.md            # You're reading it now
+formula1-driver-API/
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/
+│   │   │       └── springBootProject/
+│   │   │           └── formula1/
+│   │   │               ├── config/
+│   │   │               │   └── DataInitializer.java
+│   │   │               ├── controller/
+│   │   │               │   ├── DriverController.java
+│   │   │               │   └── StatusController.java
+│   │   │               ├── domain/
+│   │   │               │   └── Driver.java
+│   │   │               ├── repository/
+│   │   │               │   └── DriverRepository.java
+│   │   │               ├── response/
+│   │   │               │   └── ResponseHandler.java
+│   │   │               ├── service/
+│   │   │               │   └── DriverService.java
+│   │   │               └── Formula1Application.java
+│   │   └── resources/
+│   │       ├── data/
+│   │       │   └── drivers.json
+│   │       └── application.properties
+│   └── test/
+│       └── java/
+│           └── com/
+│               └── springBootProject/
+│                   └── formula1/
+│                       ├── controller/
+│                       │   └── DriverControllerIntegrationTests.java
+│                       └── Formula1ApplicationTests.java
+├── pom.xml
+├── Dockerfile
+├── docker-compose.yml
+├── mvnw
+├── mvnw.cmd
+├── .gitignore
+├── LICENSE
+└── README.md
 ```
 
 ## Usage
 ### API Endpoints
 
-You should see something like this:
-<p align="center"><img src="https://i.imgur.com/xO7OUPt.png"></p>
+| Endpoint                     | Method | Description                              |
+|------------------------------|--------|------------------------------------------|
+| `/api`                        | **GET** | Check the service status with a message |
+| `/api/drivers`                | **GET** | Get all drivers, with optional filters   |
+| `/api/drivers`                | **POST**| Add new drivers to the database          |
+| `/api/drivers/{id}`           | **PUT** | Update driver information by ID         |
+| `/api/drivers/{id}`           | **DELETE**| Delete a driver by ID                   |
+| `/api/drivers/initialize`     | **POST**| Initialize the database with sample data |
 
-You're all set! 🏎️✨ Now you can refer to the <a href="https://documenter.getpostman.com/view/10146128/2s93JoxRFG" target="_blank">**API's Documentation**</a> for more details.
+[API Documentation (Postman)](https://documenter.getpostman.com/view/10146128/2s93JoxRFG)
 
 ## License
 
