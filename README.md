@@ -17,7 +17,7 @@ cd formula1-driver-API
 
 2. Build and start the application using Docker Compose:
 ```bash
- docker-compose up --build 
+ docker compose up --build 
  ```
 _This will automatically build the Docker containers and start the application._
 
