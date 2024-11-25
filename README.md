@@ -19,27 +19,48 @@ cd formula1-driver-API
 ```bash
  docker-compose up --build 
  ```
+_This will automatically build the Docker containers and start the application._
 
-This will automatically build the Docker containers, set up a MySQL database with the name `formula1`, and start the application. The database will be configured with default credentials:
-- **MYSQL_USER**: mysqluser
-- **MYSQL_PASSWORD**: secret
-- **MYSQL_ROOT_PASSWORD**: rootpassword
+3. Access the application on http://localhost:9096/api. You should get the following response:
+```json
+{
+    "status": "Ready to go! 🚦🏁"
+}
+ ```
 
-**All done!**  
-By default, the app will run on port **9096**.
+## Project Structure
+```
+dealership-ai-chat/
+└── app/
+|   ├── __init__.py      # Package initialization
+|   ├── main.py          # FastAPI application
+|   ├── chatbot.py       # Chatbot implementation
+|   ├── database.py      # Database connection and setup
+|   └── models.py        # Database models and schemas
+├── Dockerfile           # Dockerfile for the app
+├── docker-compose.yml   # Docker Compose configuration
+├── requirements.txt     # Python dependencies
+├── init.sql             # Database initialization script
+├── .env.example         # Environment variables
+├── .gitignore           # Files to ignore in Git
+├── LICENSE              # MIT license
+└── README.md            # You're reading it now
+```
 
-## Using the API
-
-To ensure everything is working fine, you can access the API endpoint at http://localhost:9096/api/v2/drivers
+## Usage
+### API Endpoints
 
 You should see something like this:
 <p align="center"><img src="https://i.imgur.com/xO7OUPt.png"></p>
 
 You're all set! 🏎️✨ Now you can refer to the <a href="https://documenter.getpostman.com/view/10146128/2s93JoxRFG" target="_blank">**API's Documentation**</a> for more details.
 
-## Closing thoughts
-I hope you enjoy this little passion project of mine, and thanks to [@DaianaArena](https://github.com/DaianaArena) for creating the banner image!
+## License
 
-To whoever read this far, thank you very much and best regards!
+This project is licensed under the [MIT License](LICENSE).
 
-_<p align="right">Matías Carabella - Back-end Developer</p>_
+## Acknowledgements
+
+- [**Spring Boot**](https://spring.io/projects/spring-boot) 🍃 for the backend framework.
+- [**Docker**](https://www.docker.com/) 🐳 for containerized deployment.
+- [@DaianaArena](https://github.com/DaianaArena) 💜 for creating the banner image.
