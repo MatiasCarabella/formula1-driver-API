@@ -12,6 +12,7 @@ import java.util.Map;
 @RequestMapping("api")
 public class StatusController {
 
+    // Check the service status
     @GetMapping
     public ResponseEntity<Object> checkStatus() {
         Map<String, String> status = new HashMap<>();

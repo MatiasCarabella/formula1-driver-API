@@ -22,6 +22,7 @@ public class DriverController {
         this.driverService = driverService;
     }
 
+    // Fetch a list of drivers with optional filters
     @GetMapping
     public ResponseEntity<Object> getDrivers(
             @RequestParam(required = false) Optional<String> driver,
@@ -31,11 +32,13 @@ public class DriverController {
         return driverService.get(driver, team, position, year);
     }
 
+    // Add new drivers to the database
     @PostMapping
     public ResponseEntity<Object> addDrivers(@RequestBody List<Driver> drivers) {
         return driverService.add(drivers);
     }
 
+    // Update an existing driver based on their ID
     @PutMapping("/{id}")
     public ResponseEntity<Object> updateDriver(
             @PathVariable Long id,
@@ -43,12 +46,13 @@ public class DriverController {
         return driverService.update(id, driver);
     }
 
+    // Delete a driver from the database by their ID
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteDriver(@PathVariable Long id) {
         return driverService.delete(id);
     }
 
-    // Initialize DB
+    // Initialize the database with some pre-defined driver data
     @PostMapping("/initialize")
     public ResponseEntity<Object> initializeData() {
         return driverService.initializeData();
