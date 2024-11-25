@@ -1,26 +1,25 @@
 <p align="center"><a href="https://spring.io/" target="_blank"><img src="https://i.imgur.com/ctXVIWc.jpg" width="400"></a></p>
 
-# Formula 1 CRUD API - Spring Boot & MySQL
+# F1 Driver CRUD API
 This project is a REST API of F1 drivers that allows the user to fetch, add, update, and delete them as you wish.
 
-## Technical specification
-- **Docker** _(Mandatory)_
+## Setup Instructions
 
-## Installation
+### Prerequisites
+- [Docker](https://docs.docker.com/get-started/get-docker/) and [Docker Compose](https://docs.docker.com/compose/)
+- API key for [**Groq**](https://console.groq.com/docs/overview) (AI provider)
 
-1. Clone the project repository by running the following commands:
+### Installation
+1. Clone the repository:
 ```
 git clone https://github.com/MatiasCarabella/formula1-driver-API.git
 cd formula1-driver-API
 ```
 
 2. Build and start the application using Docker Compose:
-```
-git clone https://github.com/MatiasCarabella/formula1-driver-API.git
-cd formula1-driver-API
-```
-docker compose up --build
-```
+```bash
+ docker-compose up --build 
+ ```
 
 This will automatically build the Docker containers, set up a MySQL database with the name `formula1`, and start the application. The database will be configured with default credentials:
 - **MYSQL_USER**: mysqluser
