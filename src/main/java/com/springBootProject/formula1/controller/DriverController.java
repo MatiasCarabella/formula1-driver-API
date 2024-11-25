@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/v2/drivers")
+@RequestMapping("api/drivers")
 @Validated
 public class DriverController {
 

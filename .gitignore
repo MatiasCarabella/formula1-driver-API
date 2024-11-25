@@ -1,33 +1,32 @@
-HELP.md
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+# Maven build directory
+/target/
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
+# Maven Wrapper files
+/.mvn/
 
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-### VS Code ###
+# Local IDE files
+.idea/
 .vscode/
+
+# Operating system files (macOS, Windows, etc.)
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+
+# Local configuration files (e.g., application.properties with sensitive data)
+application.properties
+
+# Docker
+.docker/
+
+# Java compiled class files
+*.class
+
+# IntelliJ IDEA specific files
+*.iml
+out/
+
+# Other build directories
+build/
