@@ -1,4 +1,4 @@
-package com.springBootProject.formula1.response;
+package com.motorsport.formula1.response;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

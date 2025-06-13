@@ -1,4 +1,4 @@
-package com.springBootProject.formula1.controller;
+package com.motorsport.formula1.controller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

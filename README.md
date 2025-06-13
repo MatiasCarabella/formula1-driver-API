@@ -35,7 +35,7 @@ formula1-driver-API/
 │   ├── main/
 │   │   ├── java/
 │   │   │   └── com/
-│   │   │       └── springBootProject/
+│   │   │       └── motorsport/
 │   │   │           └── formula1/
 │   │   │               ├── config/
 │   │   │               │   └── DataInitializer.java
@@ -58,7 +58,7 @@ formula1-driver-API/
 │   └── test/
 │       └── java/
 │           └── com/
-│               └── springBootProject/
+│               └── motorsport/
 │                   └── formula1/
 │                       ├── controller/
 │                       │   └── DriverControllerIntegrationTests.java

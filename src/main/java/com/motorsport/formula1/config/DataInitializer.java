@@ -1,9 +1,9 @@
-package com.springBootProject.formula1.config;
+package com.motorsport.formula1.config;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.springBootProject.formula1.domain.Driver;
-import com.springBootProject.formula1.service.DriverService;
+import com.motorsport.formula1.domain.Driver;
+import com.motorsport.formula1.service.DriverService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
