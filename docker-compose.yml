@@ -16,7 +16,7 @@ services:
       sh -c "until nc -z db_mysql 3306; do echo waiting for mysql; sleep 2; done; java -jar app.jar"
 
   db_mysql:
-    image: mysql:8.0
+    image: mysql:9.3.0
     restart: always
     environment:
       MYSQL_DATABASE: formula1
