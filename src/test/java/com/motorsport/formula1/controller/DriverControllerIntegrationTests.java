@@ -6,8 +6,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class DriverControllerIntegrationTests {
 
-    @Test
-    void contextLoads() {
-        // Placeholder for future tests
-    }
+  @Test
+  void contextLoads() {
+    // Placeholder for future tests
+  }
 }
