@@ -27,7 +27,7 @@ public class InitializeDatabase implements IInitializeDatabase {
     try {
       if (isDatabasePopulated.execute()) {
         return Response.generate(
-            "Drivers already exist in the database. Skipping initialization.", HttpStatus.OK);
+            "Drivers already exist in the database. Skipping initialization.", HttpStatus.CONFLICT);
       }
       List<Driver> drivers = getDriversFromJson.execute();
       createDrivers.execute(drivers);

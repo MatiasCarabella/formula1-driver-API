@@ -1,8 +1,9 @@
-package com.motorsport.formula1.controller;
+package com.motorsport.formula1.controller.impl;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.motorsport.formula1.controller.IStatusController;
+import com.motorsport.formula1.response.Response;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,8 +17,6 @@ public class StatusController implements IStatusController {
   // Check the service status
   @GetMapping
   public ResponseEntity<Object> checkStatus() {
-    Map<String, String> status = new HashMap<>();
-    status.put("status", "Ready to go! 🚦🏁");
-    return ResponseEntity.ok().body(status);
+    return Response.generate("Ready to go! 🚦🏁", HttpStatus.OK);
   }
 }
