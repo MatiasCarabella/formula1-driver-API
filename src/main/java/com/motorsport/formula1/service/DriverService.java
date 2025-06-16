@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.motorsport.formula1.domain.Driver;
 import com.motorsport.formula1.repository.DriverRepository;
-import com.motorsport.formula1.response.ResponseHandler;
+import com.motorsport.formula1.response.Response;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -59,12 +59,11 @@ public class DriverService {
       List<Driver> drivers = driverRepository.findAll(spec);
 
       return CollectionUtils.isEmpty(drivers)
-          ? ResponseHandler.generateResponse("No results found", HttpStatus.NOT_FOUND, drivers)
-          : ResponseHandler.generateResponse("Success", HttpStatus.OK, drivers);
+          ? Response.generate("No results found", HttpStatus.NOT_FOUND, drivers)
+          : Response.generate("Success", HttpStatus.OK, drivers);
     } catch (Exception e) {
       log.error("Error retrieving drivers: ", e);
-      return ResponseHandler.generateResponse(
-          "Error retrieving drivers", HttpStatus.INTERNAL_SERVER_ERROR, null);
+      return Response.generate("Error retrieving drivers", HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
@@ -78,26 +77,22 @@ public class DriverService {
   public ResponseEntity<Object> add(List<Driver> drivers) {
     try {
       if (CollectionUtils.isEmpty(drivers)) {
-        return ResponseHandler.generateResponse(
-            "No drivers provided", HttpStatus.BAD_REQUEST, null);
+        return Response.generate("No drivers provided", HttpStatus.BAD_REQUEST);
       }
 
       List<Driver> existingDrivers = findExistingDrivers(drivers);
 
       if (!existingDrivers.isEmpty()) {
-        return ResponseHandler.generateResponse(
-            "Existing drivers detected", HttpStatus.CONFLICT, existingDrivers);
+        return Response.generate("Existing drivers detected", HttpStatus.CONFLICT, existingDrivers);
       }
 
       List<Driver> savedDrivers =
           drivers.stream().map(driverRepository::save).collect(Collectors.toList());
 
-      return ResponseHandler.generateResponse(
-          "Drivers created successfully", HttpStatus.CREATED, savedDrivers);
+      return Response.generate("Drivers created successfully", HttpStatus.CREATED, savedDrivers);
     } catch (Exception e) {
       log.error("Error adding drivers: ", e);
-      return ResponseHandler.generateResponse(
-          "Error adding drivers", HttpStatus.INTERNAL_SERVER_ERROR, null);
+      return Response.generate("Error adding drivers", HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
@@ -115,12 +110,10 @@ public class DriverService {
           .findById(id)
           .map(existingDriver -> updateExistingDriver(existingDriver, newDriver))
           .orElse(
-              ResponseHandler.generateResponse(
-                  "Driver with ID " + id + " does not exist", HttpStatus.NOT_FOUND, null));
+              Response.generate("Driver with ID " + id + " does not exist", HttpStatus.NOT_FOUND));
     } catch (Exception e) {
       log.error("Error updating driver: ", e);
-      return ResponseHandler.generateResponse(
-          "Error updating driver", HttpStatus.INTERNAL_SERVER_ERROR, null);
+      return Response.generate("Error updating driver", HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
@@ -135,17 +128,14 @@ public class DriverService {
     try {
       Optional<Driver> driver = driverRepository.findById(id);
       if (driver.isEmpty()) {
-        return ResponseHandler.generateResponse(
-            "Driver with ID " + id + " does not exist", HttpStatus.NOT_FOUND, null);
+        return Response.generate("Driver with ID " + id + " does not exist", HttpStatus.NOT_FOUND);
       }
 
       driverRepository.deleteById(id);
-      return ResponseHandler.generateResponse(
-          "Driver deleted successfully", HttpStatus.OK, driver.get());
+      return Response.generate("Driver deleted successfully", HttpStatus.OK, driver.get());
     } catch (Exception e) {
       log.error("Error deleting driver: ", e);
-      return ResponseHandler.generateResponse(
-          "Error deleting driver", HttpStatus.INTERNAL_SERVER_ERROR, null);
+      return Response.generate("Error deleting driver", HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
@@ -158,17 +148,16 @@ public class DriverService {
   public ResponseEntity<Object> initializeData() {
     try {
       if (isDatabasePopulated()) {
-        return ResponseHandler.generateResponse(
-            "Drivers already exist in the database. Skipping initialization.", HttpStatus.OK, null);
+        return Response.generate(
+            "Drivers already exist in the database. Skipping initialization.", HttpStatus.OK);
       }
 
       loadDriversFromJson();
-      return ResponseHandler.generateResponse(
-          "Successfully initialized driver data.", HttpStatus.OK, null);
+      return Response.generate("Successfully initialized driver data.", HttpStatus.OK);
     } catch (IOException e) {
       log.error("Failed to initialize data: ", e);
-      return ResponseHandler.generateResponse(
-          "Failed to initialize data: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR, null);
+      return Response.generate(
+          "Failed to initialize data: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
@@ -214,7 +203,7 @@ public class DriverService {
   private ResponseEntity<Object> updateExistingDriver(Driver existingDriver, Driver newDriver) {
     if (driverRepository.existsByNameAndYearAndTeam(
         newDriver.getName(), newDriver.getYear(), newDriver.getTeam())) {
-      return ResponseHandler.generateResponse("Driver already exists", HttpStatus.CONFLICT, null);
+      return Response.generate("Driver already exists", HttpStatus.CONFLICT);
     }
 
     existingDriver.setYear(newDriver.getYear());
@@ -222,8 +211,7 @@ public class DriverService {
     existingDriver.setTeam(newDriver.getTeam());
     Driver updatedDriver = driverRepository.save(existingDriver);
 
-    return ResponseHandler.generateResponse(
-        "Driver updated successfully", HttpStatus.OK, updatedDriver);
+    return Response.generate("Driver updated successfully", HttpStatus.OK, updatedDriver);
   }
 
   private boolean isDatabasePopulated() {
