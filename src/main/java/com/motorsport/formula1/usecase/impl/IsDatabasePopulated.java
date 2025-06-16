@@ -1,7 +1,7 @@
 package com.motorsport.formula1.usecase.impl;
 
 import com.motorsport.formula1.domain.Driver;
-import com.motorsport.formula1.service.DriverService;
+import com.motorsport.formula1.usecase.IGetAllDrivers;
 import com.motorsport.formula1.usecase.IIsDatabasePopulated;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -13,12 +13,12 @@ import org.springframework.util.CollectionUtils;
 @AllArgsConstructor
 @Slf4j
 public class IsDatabasePopulated implements IIsDatabasePopulated {
-  private final DriverService driverService;
+  private final IGetAllDrivers getAllDrivers;
 
   @Override
   public boolean execute() {
     try {
-      List<Driver> existingDrivers = driverService.getAllDrivers();
+      List<Driver> existingDrivers = getAllDrivers.execute();
       return !CollectionUtils.isEmpty(existingDrivers);
     } catch (Exception e) {
       log.error("Error checking database state: {}", e.getMessage(), e);

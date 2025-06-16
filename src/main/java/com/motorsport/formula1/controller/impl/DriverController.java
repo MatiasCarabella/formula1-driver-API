@@ -1,7 +1,11 @@
 package com.motorsport.formula1.controller;
 
 import com.motorsport.formula1.domain.Driver;
-import com.motorsport.formula1.service.DriverService;
+import com.motorsport.formula1.usecase.ICreateDrivers;
+import com.motorsport.formula1.usecase.IDeleteDriver;
+import com.motorsport.formula1.usecase.IGetDriversWithFilters;
+import com.motorsport.formula1.usecase.IInitializeDatabase;
+import com.motorsport.formula1.usecase.IUpdateDriver;
 import java.util.List;
 import java.util.Optional;
 import lombok.AllArgsConstructor;
@@ -23,7 +27,11 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class DriverController {
 
-  private final DriverService driverService;
+  private final ICreateDrivers createDrivers;
+  private final IGetDriversWithFilters getDriversWithFilters;
+  private final IUpdateDriver updateDriver;
+  private final IDeleteDriver deleteDriver;
+  private final IInitializeDatabase initializeDatabase;
 
   // Fetch a list of drivers with optional filters
   @GetMapping
@@ -32,30 +40,30 @@ public class DriverController {
       @RequestParam(required = false) Optional<String> team,
       @RequestParam(required = false) Optional<Integer> position,
       @RequestParam(required = false) Optional<Integer> year) {
-    return driverService.get(driver, team, position, year);
+    return getDriversWithFilters.execute(driver, team, position, year);
   }
 
   // Add new drivers to the database
   @PostMapping
   public ResponseEntity<Object> addDrivers(@RequestBody List<Driver> drivers) {
-    return driverService.add(drivers);
+    return createDrivers.execute(drivers);
   }
 
   // Update an existing driver based on their ID
   @PutMapping("/{id}")
   public ResponseEntity<Object> updateDriver(@PathVariable Long id, @RequestBody Driver driver) {
-    return driverService.update(id, driver);
+    return updateDriver.execute(id, driver);
   }
 
   // Delete a driver from the database by their ID
   @DeleteMapping("/{id}")
   public ResponseEntity<Object> deleteDriver(@PathVariable Long id) {
-    return driverService.delete(id);
+    return deleteDriver.execute(id);
   }
 
   // Initialize the database with some pre-defined driver data
   @PostMapping("/initialize")
   public ResponseEntity<Object> initializeData() {
-    return driverService.initializeData();
+    return initializeDatabase.execute();
   }
 }

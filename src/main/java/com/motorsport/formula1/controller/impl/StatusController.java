@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("api")
 @AllArgsConstructor
-public class StatusController {
+public class StatusController implements IStatusController {
 
   // Check the service status
   @GetMapping
