@@ -6,10 +6,11 @@ F1 Driver API is a modern, fully dockerized RESTful service for managing Formula
 
 ## Technology Stack
 
-- Java: 21 LTS
-- Maven: 3.9.9
-- Spring Boot: 3.5.0
-- MySQL: 9.3.0
+- [**Java**](https://www.java.com/en/) ☕: 21 LTS
+- [**Maven**](https://maven.apache.org/) 🛠️: 3.9.9
+- [**Spring Boot**](https://spring.io/projects/spring-boot) 🍃: 3.5.0
+- [**MySQL**](https://www.mysql.com/) 🐬: 9.3.0
+- [**Docker**](https://www.docker.com/) 🐳
 
 ## Setup Instructions
 
@@ -155,6 +156,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Acknowledgements
 
-- [**Spring Boot**](https://spring.io/projects/spring-boot) 🍃 for the backend framework.
-- [**Docker**](https://www.docker.com/) 🐳 for containerized deployment.
 - [**@DaianaArena**](https://github.com/DaianaArena) 💜 for creating the banner image.
