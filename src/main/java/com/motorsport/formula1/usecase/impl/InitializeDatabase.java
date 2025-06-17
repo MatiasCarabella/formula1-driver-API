@@ -1,7 +1,7 @@
 package com.motorsport.formula1.usecase.impl;
 
-import com.motorsport.formula1.domain.Driver;
-import com.motorsport.formula1.response.Response;
+import com.motorsport.formula1.entity.Driver;
+import com.motorsport.formula1.response.ResponseHandler;
 import com.motorsport.formula1.usecase.ICreateDrivers;
 import com.motorsport.formula1.usecase.IGetDriversFromJson;
 import com.motorsport.formula1.usecase.IInitializeDatabase;
@@ -26,15 +26,15 @@ public class InitializeDatabase implements IInitializeDatabase {
   public ResponseEntity<Object> execute() {
     try {
       if (isDatabasePopulated.execute()) {
-        return Response.generate(
+        return ResponseHandler.generate(
             "Drivers already exist in the database. Skipping initialization.", HttpStatus.CONFLICT);
       }
       List<Driver> drivers = getDriversFromJson.execute();
       createDrivers.execute(drivers);
-      return Response.generate("Successfully initialized driver data.", HttpStatus.OK);
+      return ResponseHandler.generate("Successfully initialized driver data.", HttpStatus.OK);
     } catch (IOException e) {
       log.error("Failed to initialize data: ", e);
-      return Response.generate(
+      return ResponseHandler.generate(
           "Failed to initialize data: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }

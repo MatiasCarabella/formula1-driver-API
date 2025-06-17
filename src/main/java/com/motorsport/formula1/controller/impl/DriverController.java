@@ -1,11 +1,12 @@
 package com.motorsport.formula1.controller.impl;
 
-import com.motorsport.formula1.domain.Driver;
+import com.motorsport.formula1.entity.Driver;
 import com.motorsport.formula1.usecase.ICreateDrivers;
 import com.motorsport.formula1.usecase.IDeleteDriver;
 import com.motorsport.formula1.usecase.IGetDriversWithFilters;
 import com.motorsport.formula1.usecase.IInitializeDatabase;
 import com.motorsport.formula1.usecase.IUpdateDriver;
+import com.motorsport.formula1.util.DocumentationHelper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -83,8 +84,7 @@ public class DriverController {
                     examples =
                         @ExampleObject(
                             name = "Success",
-                            value =
-                                "{\n  \"message\": \"Driver deleted successfully\",\n  \"status\": 200,\n  \"data\": {\\n    \"id\": 1,\\n    \"name\": \"Lewis Hamilton\",\\n    \"team\": \"Mercedes\",\\n    \"position\": 1,\\n    \"year\": 2024\\n  }\n}"))),
+                            value = DocumentationHelper.DRIVER_DELETE_SUCCESS))),
         @ApiResponse(
             responseCode = "404",
             description = "Driver not found",
@@ -94,8 +94,7 @@ public class DriverController {
                     examples =
                         @ExampleObject(
                             name = "Not Found",
-                            value =
-                                "{\n  \"message\": \"Driver with ID 1 does not exist\",\n  \"status\": 404\n}"))),
+                            value = DocumentationHelper.DRIVER_NOT_FOUND))),
         @ApiResponse(
             responseCode = "500",
             description = "Error deleting driver",
@@ -105,8 +104,7 @@ public class DriverController {
                     examples =
                         @ExampleObject(
                             name = "Error",
-                            value =
-                                "{\n  \"message\": \"Error deleting driver\",\n  \"status\": 500\n}")))
+                            value = DocumentationHelper.DRIVER_DELETE_ERROR)))
       })
   @DeleteMapping("/{id}")
   public ResponseEntity<Object> deleteDriver(
@@ -128,8 +126,7 @@ public class DriverController {
                     examples =
                         @ExampleObject(
                             name = "Success",
-                            value =
-                                "{\n  \"message\": \"Successfully initialized driver data.\",\n  \"status\": 200\n}"))),
+                            value = DocumentationHelper.INIT_SUCCESS))),
         @ApiResponse(
             responseCode = "409",
             description = "Already initialized",
@@ -139,8 +136,7 @@ public class DriverController {
                     examples =
                         @ExampleObject(
                             name = "Already initialized",
-                            value =
-                                "{\n  \"message\": \"Drivers already exist in the database. Skipping initialization.\",\n  \"status\": 409\n}"))),
+                            value = DocumentationHelper.INIT_ALREADY))),
         @ApiResponse(
             responseCode = "500",
             description = "Error",
@@ -148,10 +144,7 @@ public class DriverController {
                 @Content(
                     mediaType = "application/json",
                     examples =
-                        @ExampleObject(
-                            name = "Error",
-                            value =
-                                "{\n  \"message\": \"Failed to initialize database: <error message>\",\n  \"status\": 500\n}")))
+                        @ExampleObject(name = "Error", value = DocumentationHelper.INIT_ERROR)))
       })
   @PostMapping("/initialize")
   public ResponseEntity<Object> initializeDatabase() {

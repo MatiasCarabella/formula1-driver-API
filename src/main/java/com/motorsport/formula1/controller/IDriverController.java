@@ -1,6 +1,6 @@
 package com.motorsport.formula1.controller;
 
-import com.motorsport.formula1.domain.Driver;
+import com.motorsport.formula1.entity.Driver;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.http.ResponseEntity;

@@ -1,8 +1,8 @@
 package com.motorsport.formula1.usecase.impl;
 
-import com.motorsport.formula1.domain.Driver;
+import com.motorsport.formula1.entity.Driver;
 import com.motorsport.formula1.repository.DriverRepository;
-import com.motorsport.formula1.response.Response;
+import com.motorsport.formula1.response.ResponseHandler;
 import com.motorsport.formula1.usecase.IUpdateDriver;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,20 +25,21 @@ public class UpdateDriver implements IUpdateDriver {
               existingDriver -> {
                 if (driverRepository.existsByNameAndYearAndTeam(
                     driver.getName(), driver.getYear(), driver.getTeam())) {
-                  return Response.generate("Driver already exists", HttpStatus.CONFLICT);
+                  return ResponseHandler.generate("Driver already exists", HttpStatus.CONFLICT);
                 }
                 existingDriver.setYear(driver.getYear());
                 existingDriver.setName(driver.getName());
                 existingDriver.setTeam(driver.getTeam());
                 Driver updatedDriver = driverRepository.save(existingDriver);
-                return Response.generate(
+                return ResponseHandler.generate(
                     "Driver updated successfully", HttpStatus.OK, updatedDriver);
               })
           .orElse(
-              Response.generate("Driver with ID " + id + " does not exist", HttpStatus.NOT_FOUND));
+              ResponseHandler.generate(
+                  "Driver with ID " + id + " does not exist", HttpStatus.NOT_FOUND));
     } catch (Exception e) {
       log.error("Error updating driver: ", e);
-      return Response.generate("Error updating driver", HttpStatus.INTERNAL_SERVER_ERROR);
+      return ResponseHandler.generate("Error updating driver", HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 }

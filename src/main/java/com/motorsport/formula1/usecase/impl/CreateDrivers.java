@@ -1,8 +1,8 @@
 package com.motorsport.formula1.usecase.impl;
 
-import com.motorsport.formula1.domain.Driver;
+import com.motorsport.formula1.entity.Driver;
 import com.motorsport.formula1.repository.DriverRepository;
-import com.motorsport.formula1.response.Response;
+import com.motorsport.formula1.response.ResponseHandler;
 import com.motorsport.formula1.usecase.ICreateDrivers;
 import com.motorsport.formula1.usecase.IGetDuplicateDrivers;
 import java.util.List;
@@ -24,22 +24,23 @@ public class CreateDrivers implements ICreateDrivers {
   public ResponseEntity<Object> execute(List<Driver> drivers) {
     try {
       if (CollectionUtils.isEmpty(drivers)) {
-        return Response.generate("No drivers provided", HttpStatus.BAD_REQUEST);
+        return ResponseHandler.generate("No drivers provided", HttpStatus.BAD_REQUEST);
       }
 
       List<Driver> duplicateDrivers = getDuplicateDrivers.execute(drivers);
 
       if (!duplicateDrivers.isEmpty()) {
-        return Response.generate(
+        return ResponseHandler.generate(
             "Existing drivers detected", HttpStatus.CONFLICT, duplicateDrivers);
       }
 
       List<Driver> createdDrivers = drivers.stream().map(driverRepository::save).toList();
 
-      return Response.generate("Drivers created successfully", HttpStatus.CREATED, createdDrivers);
+      return ResponseHandler.generate(
+          "Drivers created successfully", HttpStatus.CREATED, createdDrivers);
     } catch (Exception e) {
       log.error("Error creating drivers: ", e);
-      return Response.generate("Error creating drivers", HttpStatus.INTERNAL_SERVER_ERROR);
+      return ResponseHandler.generate("Error creating drivers", HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 }

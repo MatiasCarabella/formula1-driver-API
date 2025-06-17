@@ -1,4 +1,4 @@
-package com.motorsport.formula1.domain;
+package com.motorsport.formula1.entity;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;

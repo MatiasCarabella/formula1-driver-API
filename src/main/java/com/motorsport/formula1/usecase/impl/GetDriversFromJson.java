@@ -2,7 +2,7 @@ package com.motorsport.formula1.usecase.impl;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.motorsport.formula1.domain.Driver;
+import com.motorsport.formula1.entity.Driver;
 import com.motorsport.formula1.usecase.IGetDriversFromJson;
 import java.io.IOException;
 import java.io.InputStream;

@@ -1,6 +1,6 @@
 package com.motorsport.formula1.usecase;
 
-import com.motorsport.formula1.domain.Driver;
+import com.motorsport.formula1.entity.Driver;
 import java.io.IOException;
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.motorsport.formula1.usecase;
 
-import com.motorsport.formula1.domain.Driver;
+import com.motorsport.formula1.entity.Driver;
 import org.springframework.http.ResponseEntity;
 
 /** IUpdateDriver interface. */

@@ -1,8 +1,8 @@
 package com.motorsport.formula1.usecase.impl;
 
-import com.motorsport.formula1.domain.Driver;
+import com.motorsport.formula1.entity.Driver;
 import com.motorsport.formula1.repository.DriverRepository;
-import com.motorsport.formula1.response.Response;
+import com.motorsport.formula1.response.ResponseHandler;
 import com.motorsport.formula1.usecase.IGetDriversWithFilters;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,11 +32,11 @@ public class GetDriversWithFilters implements IGetDriversWithFilters {
       List<Driver> drivers = driverRepository.findAll(spec);
 
       return CollectionUtils.isEmpty(drivers)
-          ? Response.generate("No results found", HttpStatus.NOT_FOUND, drivers)
-          : Response.generate("Success", HttpStatus.OK, drivers);
+          ? ResponseHandler.generate("No results found", HttpStatus.NOT_FOUND, drivers)
+          : ResponseHandler.generate("Success", HttpStatus.OK, drivers);
     } catch (Exception e) {
       log.error("Error retrieving drivers: ", e);
-      return Response.generate("Error retrieving drivers", HttpStatus.INTERNAL_SERVER_ERROR);
+      return ResponseHandler.generate("Error retrieving drivers", HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 

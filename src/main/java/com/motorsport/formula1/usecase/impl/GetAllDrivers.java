@@ -1,6 +1,6 @@
 package com.motorsport.formula1.usecase.impl;
 
-import com.motorsport.formula1.domain.Driver;
+import com.motorsport.formula1.entity.Driver;
 import com.motorsport.formula1.repository.DriverRepository;
 import com.motorsport.formula1.usecase.IGetAllDrivers;
 import java.util.List;
