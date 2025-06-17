@@ -1,7 +1,15 @@
 <p align="center"><a href="https://spring.io/" target="_blank"><img src="https://i.imgur.com/ctXVIWc.jpg" width="400"></a></p>
 
 # F1 Driver API
-This RESTful API allows users to fetch, add, update, and delete Formula 1 driver data, such as name, nationality, team, and statistics. Built with Spring Boot and MySQL, the app is fully dockerized for easy setup and deployment via Docker Compose, requiring no additional software installation.
+
+F1 Driver API is a modern, fully dockerized RESTful service for managing Formula 1 driver data. Built with Spring Boot and MySQL, it offers endpoints for CRUD operations, seamless local or containerized deployment, and comprehensive API documentation via Swagger and Postman.
+
+## Technology Stack
+
+- Java: 21 LTS
+- Maven: 3.9.9
+- Spring Boot: 3.5.0
+- MySQL: 9.3.0
 
 ## Setup Instructions
 
@@ -130,11 +138,11 @@ You can also view and test the API using the following Postman documentation:
 
 If you have Java and Maven installed locally, you can use the following commands:
 
-- To automatically format code using Spotless:
+### Format code with Spotless
   ```sh
   mvn spotless:apply
   ```
-- To run all tests:
+### Run all tests
   ```sh
   mvn test
   ```
