@@ -126,13 +126,15 @@ formula1-driver-API/
 
 ## API Documentation
 
-This repository includes Swagger for API documentation. Once the application is running, you can access the generated OpenAPI docs at:
+### Swagger
 
+Once the application is running, you can access the generated OpenAPI docs at:
 - [http://localhost:9096/v3/api-docs](http://localhost:9096/v3/api-docs)
 
-You can also view and test the API using the following Postman documentation:
+### Postman
 
-- [API Documentation (Postman)](https://documenter.getpostman.com/view/10146128/2s93JoxRFG)
+You can also view and test the API using the following Postman docs:
+- [Postman Documentation](https://documenter.getpostman.com/view/10146128/2s93JoxRFG)
 
 ## Running Code Quality and Tests Locally
 
