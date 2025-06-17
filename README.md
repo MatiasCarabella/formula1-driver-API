@@ -31,45 +31,75 @@ _This will automatically build the Docker containers and start the application._
 ## Project Structure
 ```
 formula1-driver-API/
-├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │   └── com/
-│   │   │       └── motorsport/
-│   │   │           └── formula1/
-│   │   │               ├── config/
-│   │   │               │   └── DataInitializer.java
-│   │   │               ├── controller/
-│   │   │               │   ├── DriverController.java
-│   │   │               │   └── StatusController.java
-│   │   │               ├── domain/
-│   │   │               │   └── Driver.java
-│   │   │               ├── repository/
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   └── com
+│   │   │       └── motorsport
+│   │   │           └── formula1
+│   │   │               ├── Formula1Application.java
+│   │   │               ├── controller
+│   │   │               │   ├── IDriverController.java
+│   │   │               │   ├── IPingController.java
+│   │   │               │   └── impl
+│   │   │               │       ├── DriverController.java
+│   │   │               │       └── PingController.java
+│   │   │               ├── entity
+│   │   │               │   ├── Driver.java
+│   │   │               │   └── Response.java
+│   │   │               ├── repository
 │   │   │               │   └── DriverRepository.java
-│   │   │               ├── response/
+│   │   │               ├── response
 │   │   │               │   └── ResponseHandler.java
-│   │   │               ├── service/
-│   │   │               │   └── DriverService.java
-│   │   │               └── Formula1Application.java
-│   │   └── resources/
-│   │       ├── data/
-│   │       │   └── drivers.json
-│   │       └── application.properties
-│   └── test/
-│       └── java/
-│           └── com/
-│               └── motorsport/
-│                   └── formula1/
-│                       ├── controller/
-│                       │   └── DriverControllerIntegrationTests.java
-│                       └── Formula1ApplicationTests.java
-├── pom.xml
+│   │   │               ├── usecase
+│   │   │               │   ├── ICreateDrivers.java
+│   │   │               │   ├── IDeleteDriver.java
+│   │   │               │   ├── IGetAllDrivers.java
+│   │   │               │   ├── IGetDriversFromJson.java
+│   │   │               │   ├── IGetDriversWithFilters.java
+│   │   │               │   ├── IGetDuplicateDrivers.java
+│   │   │               │   ├── IInitializeDatabase.java
+│   │   │               │   ├── IIsDatabasePopulated.java
+│   │   │               │   ├── IUpdateDriver.java
+│   │   │               │   └── impl
+│   │   │               │       ├── CreateDrivers.java
+│   │   │               │       ├── DeleteDriver.java
+│   │   │               │       ├── GetAllDrivers.java
+│   │   │               │       ├── GetDriversFromJson.java
+│   │   │               │       ├── GetDriversWithFilters.java
+│   │   │               │       ├── GetDuplicateDrivers.java
+│   │   │               │       ├── InitializeDatabase.java
+│   │   │               │       ├── IsDatabasePopulated.java
+│   │   │               │       └── UpdateDriver.java
+│   │   │               └── util
+│   │   │                   └── DocumentationHelper.java
+│   │   └── resources
+│   │       ├── application.properties
+│   │       └── data
+│   │           └── drivers.json
+│   └── test
+│       └── java
+│           └── com
+│               └── motorsport
+│                   └── formula1
+│                       └── usecase
+│                           └── impl
+│                               ├── CreateDriversTest.java
+│                               ├── DeleteDriverTest.java
+│                               ├── GetAllDriversTest.java
+│                               ├── GetDriversFromJsonTest.java
+│                               ├── GetDriversWithFiltersTest.java
+│                               ├── GetDuplicateDriversTest.java
+│                               ├── InitializeDatabaseTest.java
+│                               ├── IsDatabasePopulatedTest.java
+│                               └── UpdateDriverTest.java
 ├── Dockerfile
 ├── docker-compose.yml
 ├── mvnw
 ├── mvnw.cmd
+├── pom.xml
 ├── .gitignore
-├── LICENSE
+│── LICENSE
 └── README.md
 ```
 
