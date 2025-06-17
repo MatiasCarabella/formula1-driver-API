@@ -45,6 +45,29 @@ public class DriverController {
   @Operation(
       summary = "Get drivers with optional filters",
       description = "Fetch a list of drivers filtered by name, team, position, or year.")
+  @ApiResponses(
+      value = {
+        @ApiResponse(
+            responseCode = "200",
+            description = "Drivers fetched successfully",
+            content =
+                @Content(
+                    mediaType = "application/json",
+                    examples =
+                        @ExampleObject(
+                            name = "Success",
+                            value = DocumentationHelper.DRIVER_LIST_SUCCESS))),
+        @ApiResponse(
+            responseCode = "500",
+            description = "Error fetching drivers",
+            content =
+                @Content(
+                    mediaType = "application/json",
+                    examples =
+                        @ExampleObject(
+                            name = "Error",
+                            value = DocumentationHelper.DRIVER_DELETE_ERROR)))
+      })
   @GetMapping
   public ResponseEntity<Object> getDrivers(
       @Parameter(description = "Driver name") @RequestParam(required = false)
@@ -57,6 +80,29 @@ public class DriverController {
   }
 
   @Operation(summary = "Add new drivers", description = "Add new drivers to the database.")
+  @ApiResponses(
+      value = {
+        @ApiResponse(
+            responseCode = "201",
+            description = "Drivers added successfully",
+            content =
+                @Content(
+                    mediaType = "application/json",
+                    examples =
+                        @ExampleObject(
+                            name = "Success",
+                            value = DocumentationHelper.DRIVER_ADD_SUCCESS))),
+        @ApiResponse(
+            responseCode = "400",
+            description = "No drivers provided",
+            content =
+                @Content(
+                    mediaType = "application/json",
+                    examples =
+                        @ExampleObject(
+                            name = "Error",
+                            value = DocumentationHelper.DRIVER_ADD_ERROR)))
+      })
   @PostMapping
   public ResponseEntity<Object> addDrivers(
       @Parameter(description = "List of drivers to add") @RequestBody List<Driver> drivers) {
@@ -64,6 +110,39 @@ public class DriverController {
   }
 
   @Operation(summary = "Update a driver", description = "Update an existing driver by ID.")
+  @ApiResponses(
+      value = {
+        @ApiResponse(
+            responseCode = "200",
+            description = "Driver updated successfully",
+            content =
+                @Content(
+                    mediaType = "application/json",
+                    examples =
+                        @ExampleObject(
+                            name = "Success",
+                            value = DocumentationHelper.DRIVER_UPDATE_SUCCESS))),
+        @ApiResponse(
+            responseCode = "404",
+            description = "Driver not found",
+            content =
+                @Content(
+                    mediaType = "application/json",
+                    examples =
+                        @ExampleObject(
+                            name = "Not Found",
+                            value = DocumentationHelper.DRIVER_NOT_FOUND))),
+        @ApiResponse(
+            responseCode = "500",
+            description = "Error updating driver",
+            content =
+                @Content(
+                    mediaType = "application/json",
+                    examples =
+                        @ExampleObject(
+                            name = "Error",
+                            value = DocumentationHelper.DRIVER_UPDATE_ERROR)))
+      })
   @PutMapping("/{id}")
   public ResponseEntity<Object> updateDriver(
       @Parameter(description = "Driver ID") @PathVariable Long id,
