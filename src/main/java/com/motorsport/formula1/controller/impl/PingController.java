@@ -1,6 +1,6 @@
 package com.motorsport.formula1.controller.impl;
 
-import com.motorsport.formula1.controller.IStatusController;
+import com.motorsport.formula1.controller.IPingController;
 import com.motorsport.formula1.response.Response;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("api")
 @AllArgsConstructor
-public class StatusController implements IStatusController {
+public class PingController implements IPingController {
 
-  // Check the service status
+  // Ping endpoint to check service status
   @GetMapping
-  public ResponseEntity<Object> checkStatus() {
+  public ResponseEntity<Object> ping() {
     return Response.generate("Ready to go! 🚦🏁", HttpStatus.OK);
   }
 }

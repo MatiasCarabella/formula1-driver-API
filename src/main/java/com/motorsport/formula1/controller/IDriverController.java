@@ -1,82 +1,60 @@
 package com.motorsport.formula1.controller;
 
 import com.motorsport.formula1.domain.Driver;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.ExampleObject;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
-@Tag(name = "Driver Controller", description = "API for managing Formula 1 drivers")
+/** IDriverController interface. */
 public interface IDriverController {
 
-  @Operation(
-      summary = "Get drivers with optional filters",
-      description = "Fetch a list of drivers filtered by name, team, position, or year.")
+  /**
+   * Get drivers with optional filters.
+   *
+   * @param driver
+   * @param team
+   * @param position
+   * @param year
+   * @return ResponseEntity with a list of drivers or an error message.
+   */
   ResponseEntity<Object> getDrivers(
-      @Parameter(description = "Driver name") @RequestParam(required = false)
-          Optional<String> driver,
-      @Parameter(description = "Team name") @RequestParam(required = false) Optional<String> team,
-      @Parameter(description = "Position") @RequestParam(required = false)
-          Optional<Integer> position,
-      @Parameter(description = "Year") @RequestParam(required = false) Optional<Integer> year);
+      @RequestParam(required = false) Optional<String> driver,
+      @RequestParam(required = false) Optional<String> team,
+      @RequestParam(required = false) Optional<Integer> position,
+      @RequestParam(required = false) Optional<Integer> year);
 
-  @Operation(summary = "Add new drivers", description = "Add new drivers to the database.")
-  ResponseEntity<Object> addDrivers(
-      @Parameter(description = "List of drivers to add") @RequestBody List<Driver> drivers);
+  /**
+   * Add new drivers to the database.
+   *
+   * @param drivers
+   * @return ResponseEntity with the result of the operation.
+   */
+  ResponseEntity<Object> addDrivers(@RequestBody List<Driver> drivers);
 
-  @Operation(summary = "Update a driver", description = "Update an existing driver by ID.")
-  ResponseEntity<Object> updateDriver(
-      @Parameter(description = "Driver ID") @PathVariable Long id,
-      @Parameter(description = "Driver data") @RequestBody Driver driver);
+  /**
+   * Update an existing driver.
+   *
+   * @param id
+   * @param driver
+   * @return ResponseEntity with the result of the operation.
+   */
+  ResponseEntity<Object> updateDriver(@PathVariable Long id, @RequestBody Driver driver);
 
-  @Operation(summary = "Delete a driver", description = "Delete a driver by ID.")
-  ResponseEntity<Object> deleteDriver(@Parameter(description = "Driver ID") @PathVariable Long id);
+  /**
+   * Delete a driver by ID.
+   *
+   * @param id
+   * @return ResponseEntity with the result of the operation.
+   */
+  ResponseEntity<Object> deleteDriver(@PathVariable Long id);
 
-  @Operation(
-      summary = "Initialize driver data",
-      description = "Initialize the database with pre-defined driver data.")
-  @ApiResponses(
-      value = {
-        @ApiResponse(
-            responseCode = "200",
-            description = "Initialization successful",
-            content =
-                @Content(
-                    mediaType = "application/json",
-                    examples =
-                        @ExampleObject(
-                            name = "Success",
-                            value =
-                                "{\n  \"message\": \"Successfully initialized driver data.\",\n  \"status\": 200\n}"))),
-        @ApiResponse(
-            responseCode = "409",
-            description = "Drivers already exist in the database. Skipping initialization.",
-            content =
-                @Content(
-                    mediaType = "application/json",
-                    examples =
-                        @ExampleObject(
-                            name = "Already Exists",
-                            value =
-                                "{\n  \"message\": \"Drivers already exist in the database. Skipping initialization.\",\n  \"status\": 409\n}"))),
-        @ApiResponse(
-            responseCode = "500",
-            description = "Initialization failed",
-            content =
-                @Content(
-                    mediaType = "application/json",
-                    examples =
-                        @ExampleObject(
-                            name = "Error",
-                            value =
-                                "{\n  \"message\": \"Failed to initialize data: <error message>\",\n  \"status\": 500\n}")))
-      })
-  ResponseEntity<Object> initializeData();
+  /**
+   * Initialize the database with default data.
+   *
+   * @return ResponseEntity with the result of the initialization.
+   */
+  ResponseEntity<Object> initializeDatabase();
 }
