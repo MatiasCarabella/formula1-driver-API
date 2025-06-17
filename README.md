@@ -24,7 +24,8 @@ _This will automatically build the Docker containers and start the application._
 3. Access the application on http://localhost:9096/api. You should get the following response:
 ```json
 {
-    "status": "Ready to go! 🚦🏁"
+    "message": "Ready to go! 🚦🏁",
+    "status": 200
 }
  ```
 
@@ -115,7 +116,28 @@ formula1-driver-API/
 | `/api/drivers/{id}`           | **DELETE**| Delete a driver by ID                   |
 | `/api/drivers/initialize`     | **POST**| Initialize the database with sample data |
 
-[API Documentation (Postman)](https://documenter.getpostman.com/view/10146128/2s93JoxRFG)
+## API Documentation
+
+This repository includes Swagger for API documentation. Once the application is running, you can access the generated OpenAPI docs at:
+
+- [http://localhost:9096/v3/api-docs](http://localhost:9096/v3/api-docs)
+
+You can also view and test the API using the following Postman documentation:
+
+- [API Documentation (Postman)](https://documenter.getpostman.com/view/10146128/2s93JoxRFG)
+
+## Running Code Quality and Tests Locally
+
+If you have Java and Maven installed locally, you can use the following commands:
+
+- To automatically format code using Spotless:
+  ```sh
+  mvn spotless:apply
+  ```
+- To run all tests:
+  ```sh
+  mvn test
+  ```
 
 ## License
 
