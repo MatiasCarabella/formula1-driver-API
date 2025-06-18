@@ -1,8 +1,13 @@
 <p align="center"><a href="https://spring.io/" target="_blank"><img src="https://i.imgur.com/ctXVIWc.jpg" width="400"></a></p>
+<div align="center">
+[![Java](https://img.shields.io/badge/Java-%23ED8B00.svg?logo=openjdk&logoColor=white)](#) [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-6DB33F?logo=springboot&logoColor=fff)](#) [![MySQL](https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=fff)](#) [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff)](#) ![Swagger](https://img.shields.io/badge/Swagger-85EA2D?logo=swagger&logoColor=black) ![Postman Collection](https://img.shields.io/badge/Postman-Collection-orange?style=flat-square&logo=postman)
+</div>
 
 # F1 Driver API
 
 F1 Driver API is a modern, fully dockerized RESTful service for managing Formula 1 driver data. Built with Spring Boot and MySQL, it offers endpoints for CRUD operations, seamless local or containerized deployment, and comprehensive API documentation via Swagger and Postman.
+
+
 
 ## Technology Stack
 
