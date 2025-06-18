@@ -5,7 +5,7 @@
   <img src="https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=fff" alt="MySQL" />
   <img src="https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff" alt="Docker" />
   <img src="https://img.shields.io/badge/Swagger-85EA2D?logo=swagger&logoColor=black" alt="Swagger" />
-  <img src="https://img.shields.io/badge/Postman-orange?style=flat-square&logo=postman" alt="Postman" />
+  <img src="https://img.shields.io/badge/Postman-gray?style=flat-square&logo=postman" alt="Postman" />
 </div>
 
 # F1 Driver API
