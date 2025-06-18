@@ -1,26 +1,16 @@
 <p align="center"><a href="https://spring.io/" target="_blank"><img src="https://i.imgur.com/ctXVIWc.jpg" width="400"></a></p>
 <div align="center">
-  <img src="https://img.shields.io/badge/Java-%23ED8B00.svg?logo=openjdk&logoColor=white" alt="Java" />
-  <img src="https://img.shields.io/badge/Spring%20Boot-6DB33F?logo=springboot&logoColor=fff" alt="Spring Boot" />
-  <img src="https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=fff" alt="MySQL" />
+  <img src="https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fraw.githubusercontent.com%2FMatiasCarabella%2Fformula1-driver-API%2Fmain%2Fpom.xml&query=%2F%2F*%5Blocal-name()%3D'java.version'%5D&label=Java&labelColor=%23ED8B00&color=gray&logo=openjdk" alt="Java 21 LTS" />
+<img src="https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fraw.githubusercontent.com%2FMatiasCarabella%2Fformula1-driver-API%2Fmain%2Fpom.xml&query=%2F%2F*%5Blocal-name()%3D'parent'%5D%2F*%5Blocal-name()%3D'version'%5D&label=Spring%20Boot&labelColor=6DB33F&color=gray&logo=springboot&logoColor=white" alt="Spring Boot" />
+<img src="https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fraw.githubusercontent.com%2FMatiasCarabella%2Fformula1-driver-API%2Fmain%2Fpom.xml&query=%2F%2F*%5Blocal-name()%3D'mysql.version'%5D&label=MySQL&labelColor=4479A1&color=gray&logo=mysql&logoColor=white" alt="MySQL" />
   <img src="https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff" alt="Docker" />
   <img src="https://img.shields.io/badge/Swagger-85EA2D?logo=swagger&logoColor=black" alt="Swagger" />
-  <img src="https://img.shields.io/badge/Postman-gray?style=flat&logo=postman" alt="Postman" />
+  <img src="https://img.shields.io/badge/Postman-gray?logo=postman" alt="Postman" />
 </div>
 
 # F1 Driver API
 
 F1 Driver API is a modern, fully dockerized RESTful service for managing Formula 1 driver data. Built with Spring Boot and MySQL, it offers endpoints for CRUD operations, seamless local or containerized deployment, and comprehensive API documentation via Swagger and Postman.
-
-
-
-## Technology Stack
-
-- [**Java**](https://www.java.com/en/) ☕: 21 LTS
-- [**Maven**](https://maven.apache.org/) 🛠️: 3.9.9
-- [**Spring Boot**](https://spring.io/projects/spring-boot) 🍃: 3.5.0
-- [**MySQL**](https://www.mysql.com/) 🐬: 9.3.0
-- [**Docker**](https://www.docker.com/) 🐳
 
 ## Setup Instructions
 
