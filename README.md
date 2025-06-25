@@ -1,4 +1,11 @@
-<div align="center"><a href="https://spring.io/" target="_blank"><img src="https://i.imgur.com/ctXVIWc.jpg" width="400"></a></div>
+<div id="user-content-toc">
+  <ul align="center" style="list-style: none;">
+    <img src="https://www.pngmart.com/files/23/F1-Logo-PNG-HD.png" width=400>
+    <summary>
+      <h1>Formula 1 Driver API</h1>
+    </summary>
+  </ul>
+</div>
 <div align="center">
   <a href="https://www.oracle.com/java/" target="_blank"><img src="https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fraw.githubusercontent.com%2FMatiasCarabella%2Fformula1-driver-API%2Fmain%2Fpom.xml&query=%2F%2F*%5Blocal-name()%3D'java.version'%5D&label=Java&labelColor=%23ED8B00&color=gray&logo=openjdk" alt="Java 21 LTS" /></a>
   <a href="https://spring.io/projects/spring-boot" target="_blank"><img src="https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fraw.githubusercontent.com%2FMatiasCarabella%2Fformula1-driver-API%2Fmain%2Fpom.xml&query=%2F%2F*%5Blocal-name()%3D'parent'%5D%2F*%5Blocal-name()%3D'version'%5D&label=Spring%20Boot&labelColor=6DB33F&color=gray&logo=springboot&logoColor=white" alt="Spring Boot" /></a>
@@ -8,10 +15,9 @@
   <a href="https://swagger.io/" target="_blank"><img src="https://img.shields.io/badge/Swagger-85EA2D?logo=swagger&logoColor=black" alt="Swagger" /></a>
   <a href="https://documenter.getpostman.com/view/10146128/2s93JoxRFG" target="_blank"><img src="https://img.shields.io/badge/Postman-Collection-orange?logo=postman" alt="Postman Collection" /></a>
 </div>
+<h1></h1>
 
-# F1 Driver API
-
-F1 Driver API is a modern, fully dockerized RESTful service for managing Formula 1 driver data. Built with Spring Boot and MySQL, it offers endpoints for CRUD operations, seamless local or containerized deployment, and comprehensive API documentation via Swagger and Postman.
+This Formula 1 Driver API is a fully dockerized RESTful service for managing Formula 1 driver data. Built with Spring Boot and MySQL, it offers endpoints for CRUD operations, seamless local or containerized deployment, and API documentation via Swagger and Postman.
 
 ## Setup Instructions
 
