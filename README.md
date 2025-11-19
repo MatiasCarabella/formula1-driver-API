@@ -7,9 +7,9 @@
   </ul>
 </div>
 <div align="center">
-  <a href="https://www.oracle.com/java/" target="_blank"><img src="https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fraw.githubusercontent.com%2FMatiasCarabella%2Fformula1-driver-API%2Fmain%2Fpom.xml&query=%2F%2F*%5Blocal-name()%3D'java.version'%5D&label=Java&labelColor=%23ED8B00&color=gray&logo=openjdk" alt="Java 21 LTS" /></a>
-  <a href="https://spring.io/projects/spring-boot" target="_blank"><img src="https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fraw.githubusercontent.com%2FMatiasCarabella%2Fformula1-driver-API%2Fmain%2Fpom.xml&query=%2F%2F*%5Blocal-name()%3D'parent'%5D%2F*%5Blocal-name()%3D'version'%5D&label=Spring%20Boot&labelColor=6DB33F&color=gray&logo=springboot&logoColor=white" alt="Spring Boot" /></a>
-  <a href="https://maven.apache.org/" target="_blank"><img src="https://img.shields.io/badge/Maven-C71A36?logo=apachemaven&logoColor=white" alt="Maven" /></a>
+  <a href="https://www.oracle.com/java/" target="_blank"><img src="https://img.shields.io/badge/Java-25-ED8B00?logo=openjdk&logoColor=white" alt="Java 25" /></a>
+  <a href="https://spring.io/projects/spring-boot" target="_blank"><img src="https://img.shields.io/badge/Spring%20Boot-3.5.0-6DB33F?logo=springboot&logoColor=white" alt="Spring Boot" /></a>
+  <a href="https://gradle.org/" target="_blank"><img src="https://img.shields.io/badge/Gradle-02303A?logo=gradle&logoColor=white" alt="Gradle" /></a>
   <a href="https://www.mysql.com/" target="_blank"><img src="https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fraw.githubusercontent.com%2FMatiasCarabella%2Fformula1-driver-API%2Fmain%2Fpom.xml&query=%2F%2F*%5Blocal-name()%3D'mysql.version'%5D&label=MySQL&labelColor=4479A1&color=gray&logo=mysql&logoColor=white" alt="MySQL" /></a>
   <a href="https://www.docker.com/" target="_blank"><img src="https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff" alt="Docker" /></a>
   <a href="https://swagger.io/" target="_blank"><img src="https://img.shields.io/badge/Swagger-85EA2D?logo=swagger&logoColor=black" alt="Swagger" /></a>
@@ -112,9 +112,12 @@ formula1-driver-API/
 │                               └── UpdateDriverTest.java
 ├── Dockerfile
 ├── docker-compose.yml
-├── mvnw
-├── mvnw.cmd
-├── pom.xml
+├── Dockerfile
+├── docker-compose.yml
+├── gradlew
+├── gradlew.bat
+├── build.gradle
+├── settings.gradle
 ├── .gitignore
 │── LICENSE
 └── README.md
@@ -146,15 +149,21 @@ You can also view and test the API using the following Postman docs:
 
 ## Running Code Quality and Tests Locally
 
-If you have Java and Maven installed locally, you can use the following commands:
+If you have Java and Gradle installed locally (or use the wrapper), you can use the following commands:
+
+### Run the application
+  ```sh
+  ./gradlew run
+  ```
+  _Or use `bootRun`_
 
 ### Format code with Spotless
   ```sh
-  mvn spotless:apply
+  ./gradlew spotlessApply
   ```
 ### Run all tests
   ```sh
-  mvn test
+  ./gradlew test
   ```
 
 ## License

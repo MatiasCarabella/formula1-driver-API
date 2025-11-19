@@ -3,6 +3,7 @@
 
 # Maven Wrapper files
 /.mvn/
+/.gradle/
 
 # Local IDE files
 .idea/

@@ -1,11 +1,11 @@
 # Build stage
-FROM maven:3.9.9-eclipse-temurin-21 AS builder
+FROM gradle:jdk25 AS builder
 WORKDIR /app
 COPY . .
-RUN mvn clean package -DskipTests
+RUN ./gradlew clean build -x test -x spotlessCheck
 
 # Runtime stage
-FROM eclipse-temurin:21-jre-jammy
+FROM eclipse-temurin:25-jre-noble
 WORKDIR /app
-COPY --from=builder /app/target/*.jar app.jar
+COPY --from=builder /app/build/libs/*.jar app.jar
 ENTRYPOINT ["java", "-jar", "app.jar"]
