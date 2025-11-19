@@ -10,7 +10,7 @@
   <a href="https://www.oracle.com/java/" target="_blank"><img src="https://img.shields.io/badge/Java-25-ED8B00?logo=openjdk&logoColor=white" alt="Java 25" /></a>
   <a href="https://spring.io/projects/spring-boot" target="_blank"><img src="https://img.shields.io/badge/Spring%20Boot-3.5.0-6DB33F?logo=springboot&logoColor=white" alt="Spring Boot" /></a>
   <a href="https://gradle.org/" target="_blank"><img src="https://img.shields.io/badge/Gradle-02303A?logo=gradle&logoColor=white" alt="Gradle" /></a>
-  <a href="https://www.mysql.com/" target="_blank"><img src="https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fraw.githubusercontent.com%2FMatiasCarabella%2Fformula1-driver-API%2Fmain%2Fpom.xml&query=%2F%2F*%5Blocal-name()%3D'mysql.version'%5D&label=MySQL&labelColor=4479A1&color=gray&logo=mysql&logoColor=white" alt="MySQL" /></a>
+  <a href="https://www.mysql.com/" target="_blank"><img src="https://img.shields.io/badge/MySQL-9.5.0-4479A1?logo=mysql&logoColor=white" alt="MySQL" /></a>
   <a href="https://www.docker.com/" target="_blank"><img src="https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff" alt="Docker" /></a>
   <a href="https://swagger.io/" target="_blank"><img src="https://img.shields.io/badge/Swagger-85EA2D?logo=swagger&logoColor=black" alt="Swagger" /></a>
   <a href="https://documenter.getpostman.com/view/10146128/2s93JoxRFG" target="_blank"><img src="https://img.shields.io/badge/Postman-Collection-orange?logo=postman" alt="Postman Collection" /></a>

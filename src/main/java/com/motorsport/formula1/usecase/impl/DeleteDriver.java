@@ -1,5 +1,6 @@
 package com.motorsport.formula1.usecase.impl;
 
+import com.motorsport.formula1.entity.Driver;
 import com.motorsport.formula1.repository.DriverRepository;
 import com.motorsport.formula1.response.ResponseHandler;
 import com.motorsport.formula1.usecase.IDeleteDriver;
@@ -19,7 +20,7 @@ public class DeleteDriver implements IDeleteDriver {
   @Override
   public ResponseEntity<Object> execute(Long id) {
     try {
-      Optional<com.motorsport.formula1.entity.Driver> driver = driverRepository.findById(id);
+      Optional<Driver> driver = driverRepository.findById(id);
       if (driver.isEmpty()) {
         return ResponseHandler.generate(
             "Driver with ID " + id + " does not exist", HttpStatus.NOT_FOUND);

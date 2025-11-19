@@ -60,6 +60,14 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
+tasks.named('run') {
+	args = [
+		'--spring.datasource.url=jdbc:mysql://localhost:3316/formula1?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false',
+		'--spring.datasource.username=mysqluser',
+		'--spring.datasource.password=secret'
+	]
+}
+
 tasks.named('test') {
 	useJUnitPlatform()
 }

@@ -19,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 
 @ExtendWith(MockitoExtension.class)
 class CreateDriversTest implements WithAssertions {
+
   @Mock DriverRepository driverRepository;
   @Mock IGetDuplicateDrivers getDuplicateDrivers;
   @InjectMocks CreateDrivers createDrivers;
