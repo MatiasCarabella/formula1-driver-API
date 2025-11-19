@@ -19,7 +19,7 @@ public class GetDriversFromJson implements IGetDriversFromJson {
   private final ObjectMapper objectMapper;
 
   public List<Driver> execute() throws IOException {
-    Resource resource = new ClassPathResource(DRIVERS_JSON_PATH);
+    final Resource resource = new ClassPathResource(DRIVERS_JSON_PATH);
     try (InputStream inputStream = resource.getInputStream()) {
       return objectMapper.readValue(inputStream, new TypeReference<List<Driver>>() {});
     }

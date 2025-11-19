@@ -29,7 +29,7 @@ public class InitializeDatabase implements IInitializeDatabase {
         return ResponseHandler.generate(
             "Drivers already exist in the database. Skipping initialization.", HttpStatus.CONFLICT);
       }
-      List<Driver> drivers = getDriversFromJson.execute();
+      final List<Driver> drivers = getDriversFromJson.execute();
       createDrivers.execute(drivers);
       return ResponseHandler.generate("Successfully initialized driver data.", HttpStatus.OK);
     } catch (IOException e) {

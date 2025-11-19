@@ -20,7 +20,7 @@ public class DeleteDriver implements IDeleteDriver {
   @Override
   public ResponseEntity<Object> execute(Long id) {
     try {
-      Optional<Driver> driver = driverRepository.findById(id);
+      final Optional<Driver> driver = driverRepository.findById(id);
       if (driver.isEmpty()) {
         return ResponseHandler.generate(
             "Driver with ID " + id + " does not exist", HttpStatus.NOT_FOUND);

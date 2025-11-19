@@ -4,6 +4,7 @@ import com.motorsport.formula1.entity.Driver;
 import com.motorsport.formula1.repository.DriverRepository;
 import com.motorsport.formula1.response.ResponseHandler;
 import com.motorsport.formula1.usecase.IGetDriversWithFilters;
+import jakarta.persistence.criteria.Predicate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -28,8 +29,8 @@ public class GetDriversWithFilters implements IGetDriversWithFilters {
       Optional<Integer> position,
       Optional<Integer> year) {
     try {
-      Specification<Driver> spec = buildSpecification(driver, team, position, year);
-      List<Driver> drivers = driverRepository.findAll(spec);
+      final Specification<Driver> spec = buildSpecification(driver, team, position, year);
+      final List<Driver> drivers = driverRepository.findAll(spec);
 
       return CollectionUtils.isEmpty(drivers)
           ? ResponseHandler.generate("No results found", HttpStatus.NOT_FOUND, drivers)
@@ -46,7 +47,7 @@ public class GetDriversWithFilters implements IGetDriversWithFilters {
       Optional<Integer> position,
       Optional<Integer> year) {
     return (root, query, cb) -> {
-      List<jakarta.persistence.criteria.Predicate> predicates = new ArrayList<>();
+      final List<Predicate> predicates = new ArrayList<>();
 
       driver.ifPresent(
           d -> {
@@ -63,7 +64,7 @@ public class GetDriversWithFilters implements IGetDriversWithFilters {
       position.ifPresent(p -> predicates.add(cb.equal(root.get("position"), p)));
       year.ifPresent(y -> predicates.add(cb.equal(root.get("year"), y)));
 
-      return cb.and(predicates.toArray(new jakarta.persistence.criteria.Predicate[0]));
+      return cb.and(predicates.toArray(new Predicate[0]));
     };
   }
 }

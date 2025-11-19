@@ -7,12 +7,12 @@ import org.springframework.http.ResponseEntity;
 public class ResponseHandler {
 
   public static ResponseEntity<Object> generate(String message, HttpStatus status) {
-    Response response = Response.builder().message(message).status(status.value()).build();
+    final Response response = Response.builder().message(message).status(status.value()).build();
     return new ResponseEntity<>(response, status);
   }
 
   public static ResponseEntity<Object> generate(String message, HttpStatus status, Object data) {
-    Response response =
+    final Response response =
         Response.builder().message(message).status(status.value()).data(data).build();
     return new ResponseEntity<>(response, status);
   }

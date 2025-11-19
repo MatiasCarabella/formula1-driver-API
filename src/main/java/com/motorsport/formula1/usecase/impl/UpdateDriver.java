@@ -30,7 +30,7 @@ public class UpdateDriver implements IUpdateDriver {
                 existingDriver.setYear(driver.getYear());
                 existingDriver.setName(driver.getName());
                 existingDriver.setTeam(driver.getTeam());
-                Driver updatedDriver = driverRepository.save(existingDriver);
+                final Driver updatedDriver = driverRepository.save(existingDriver);
                 return ResponseHandler.generate(
                     "Driver updated successfully", HttpStatus.OK, updatedDriver);
               })

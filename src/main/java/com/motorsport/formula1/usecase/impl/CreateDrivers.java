@@ -27,14 +27,14 @@ public class CreateDrivers implements ICreateDrivers {
         return ResponseHandler.generate("No drivers provided", HttpStatus.BAD_REQUEST);
       }
 
-      List<Driver> duplicateDrivers = getDuplicateDrivers.execute(drivers);
+      final List<Driver> duplicateDrivers = getDuplicateDrivers.execute(drivers);
 
       if (!duplicateDrivers.isEmpty()) {
         return ResponseHandler.generate(
             "Existing drivers detected", HttpStatus.CONFLICT, duplicateDrivers);
       }
 
-      List<Driver> createdDrivers = drivers.stream().map(driverRepository::save).toList();
+      final List<Driver> createdDrivers = drivers.stream().map(driverRepository::save).toList();
 
       return ResponseHandler.generate(
           "Drivers created successfully", HttpStatus.CREATED, createdDrivers);

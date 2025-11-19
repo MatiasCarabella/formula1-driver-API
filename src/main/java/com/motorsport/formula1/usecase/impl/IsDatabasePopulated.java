@@ -18,7 +18,7 @@ public class IsDatabasePopulated implements IIsDatabasePopulated {
   @Override
   public boolean execute() {
     try {
-      List<Driver> existingDrivers = getAllDrivers.execute();
+      final List<Driver> existingDrivers = getAllDrivers.execute();
       return !CollectionUtils.isEmpty(existingDrivers);
     } catch (Exception e) {
       log.error("Error checking database state: {}", e.getMessage(), e);
